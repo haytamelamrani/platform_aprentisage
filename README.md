@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# SmartLearn
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SmartLearn est une plateforme d’apprentissage en ligne développée pour offrir une expérience d’enseignement moderne et intelligente. Elle repose sur une architecture full-stack performante, combinant une interface utilisateur réactive, une base de données flexible et un assistant IA capable de s’adapter à chaque profil d’utilisateur.
 
-## Available Scripts
+## Présentation du projet
 
-In the project directory, you can run:
+L’objectif principal de SmartLearn est de créer un environnement où les étudiants et les enseignants peuvent interagir efficacement, partager des ressources pédagogiques, suivre la progression des apprenants, et bénéficier d’un accompagnement automatisé grâce à l’intelligence artificielle.
 
-### `npm start`
+Cette solution a été pensée pour répondre aux besoins réels du milieu éducatif moderne, en particulier dans un contexte post-pandémie où l’enseignement à distance s’est démocratisé.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Fonctionnalités clés
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Espace étudiant
+- Inscription avec niveau d’étude et niveau en programmation
+- Accès aux cours PDF et vidéos
+- Suivi de progression par cours
+- Interaction avec un assistant IA pour poser des questions techniques
 
-### `npm test`
+### Espace enseignant
+- Création de cours (texte, PDF ou vidéo)
+- Création de quiz liés à chaque cours
+- Visualisation des statistiques des étudiants
+- Gestion de son profil et de ses publications
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Espace administrateur
+- Gestion des comptes (professeurs, étudiants)
+- Ajout de nouveaux administrateurs
+- Visualisation globale des statistiques de la plateforme
 
-### `npm run build`
+### Assistant IA
+- Suggestions automatiques d’apprentissage
+- Correction de code simple
+- Réponses personnalisées en fonction du niveau de l’étudiant
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Architecture technique
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontend
+- React.js avec composants dynamiques
+- Tailwind CSS pour un design responsive moderne
+- Context API pour la gestion des rôles et de la session utilisateur
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Backend
+- Node.js avec Express.js
+- MongoDB pour le stockage des utilisateurs, cours et quiz
+- Authentification sécurisée via JWT
+- API RESTful bien structurée
