@@ -1,0 +1,124 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.menu-icon {
+  background-color: #00ff99;
+  border-radius: 15px;
+  display: none;
+  width: 40px;
+  cursor: pointer;
+}
+
+/* Liens */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.btn-register {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.mode-toggle {
+  background: none;
+  border: 1px solid currentColor;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* 🌙 DARK MODE */
+.dark-mode .navbar {
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+
+.dark-mode .logo {
+  color: #00ff99;
+}
+
+.dark-mode .nav-links li a {
+  color: #ccc;
+}
+
+.dark-mode .nav-links li a:hover {
+  color: #00ff99;
+}
+
+.dark-mode .btn-register {
+  background: #00ff99;
+  color: #000 !important;
+}
+
+/* ☀️ LIGHT MODE */
+.light-mode .navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.light-mode .logo {
+  color: #00aa66;
+}
+
+.light-mode .nav-links li a {
+  color: #222;
+}
+
+.light-mode .nav-links li a:hover {
+  color: #00aa66;
+}
+
+.light-mode .btn-register {
+  background: #00aa66;
+  color: #fff !important;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: inherit;
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
