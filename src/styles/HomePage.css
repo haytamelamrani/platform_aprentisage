@@ -1,0 +1,168 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #ffffff, #e8f5f0);
+  gap: 2rem;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #222;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.hero-buttons .btn,
+.hero-buttons .btn-outline {
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.hero-buttons .btn {
+  background-color: #00aa66;
+  color: white;
+}
+
+.hero-buttons .btn-outline {
+  background: transparent;
+  color: #00aa66;
+  border: 2px solid #00aa66;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Features Section */
+.features {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #00aa66;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: auto;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .hero {
+  background: #121212;
+}
+
+.dark-mode .hero-content h1 {
+  color: #fff;
+}
+
+.dark-mode .hero-content p {
+  color: #aaa;
+}
+
+.dark-mode .btn {
+  background-color: #00ff99;
+  color: #000;
+}
+
+.dark-mode .btn-outline {
+  border-color: #00ff99;
+  color: #00ff99;
+}
+
+.dark-mode .btn-outline:hover {
+  background: #00ff9966;
+}
+
+.dark-mode .features {
+  background-color: #1f1f1f;
+}
+
+.dark-mode .features h2 {
+  color: #00ff99;
+}
+
+.dark-mode .feature-card {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 8px 16px rgba(0,255,153,0.1);
+}
+
+.dark-mode .feature-card:hover {
+  box-shadow: 0 10px 20px rgba(0,255,153,0.2);
+}
+
+.dark-mode .footer {
+  background: #1a1a1a;
+  color: #bbb;
+}
+.dark-mode .hero { background-color: #121212; }
+.dark-mode .features { background-color: #1f1f1f; }
+.dark-mode .footer { background-color: #1a1a1a; }
+
