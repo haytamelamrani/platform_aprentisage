@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
+
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ForgetPassword from './pages/ForgetPassword';
+
+import AboutPage from './pages/AboutPage';
+import FeaturesPage from './pages/FeaturesPage';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const toggleMode = () => setDarkMode(!darkMode);
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+  }, [darkMode]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+      <Navbar darkMode={darkMode} toggleMode={toggleMode} />
+      <Routes>
+        <Route path="/" element={<HomePage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/login" element={<LoginPage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/register" element={<RegisterPage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/forgot-password" element={<ForgetPassword darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
+
+
+      </Routes>
+    </Router>
   );
 }
 

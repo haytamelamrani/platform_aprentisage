@@ -1,0 +1,90 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f7f9;
+  padding: 2rem;
+}
+
+.login-form {
+  margin-top: 3rem;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-form h2 {
+  text-align: center;
+  color: #00aa66;
+}
+
+.login-form input {
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  background: #00aa66;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #008f57;
+}
+
+.forgot-link {
+  font-size: 0.9rem;
+  text-align: center;
+  color: #00aa66;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  color: #007a4c;
+}
+
+.feedback {
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* DARK MODE */
+.dark-mode .login-page {
+  background: #121212;
+}
+
+.dark-mode .login-form {
+  background: #1f1f1f;
+  color: #fff;
+}
+
+.dark-mode .login-form input {
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+}
+
+.dark-mode .login-form button {
+  background: #00ff99;
+  color: #000;
+}
+
+.dark-mode .forgot-link {
+  color: #00ff99;
+}
