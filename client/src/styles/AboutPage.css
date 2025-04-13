@@ -21,7 +21,7 @@
   .about-container p {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: #f6ebeb;
+    
     margin-top: 1rem;
   }
   
@@ -46,7 +46,7 @@
   
   .dark-mode .about-container {
     background-color: #1f1f1f;
-    color: #000000;
+    color: white;
   }
   
   .dark-mode .about-container h1,
