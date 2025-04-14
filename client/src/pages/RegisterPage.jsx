@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
-import Navbar from '../components/Navbar';
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import '../styles/HomePage.css';
 
 const HomePage = ({ darkMode, toggleMode }) => {

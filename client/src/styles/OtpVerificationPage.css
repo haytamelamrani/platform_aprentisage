@@ -1,0 +1,82 @@
+.otp-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fa;
+    padding: 2rem;
+    transition: background 0.3s ease;
+  }
+  
+  .otp-container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+  
+  .otp-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .otp-form input {
+    padding: 0.9rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+  
+  .otp-form button {
+    background: #00aa66;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .otp-form button:hover {
+    background: #008f57;
+  }
+  
+  .otp-message {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  /* Dark Mode */
+  .dark-mode .otp-page {
+    background: #121212;
+  }
+  
+  .dark-mode .otp-container {
+    background: #1e1e1e;
+    color: #eee;
+  }
+  
+  .dark-mode .otp-form input {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+  }
+  
+  .dark-mode .otp-form button {
+    background: #00ff99;
+    color: black;
+  }
+  
+  .dark-mode .otp-message {
+    color: #ccc;
+  }
+  
