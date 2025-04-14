@@ -10,6 +10,7 @@ import ForgetPassword from './pages/ForgetPassword';
 
 import AboutPage from './pages/AboutPage';
 import FeaturesPage from './pages/FeaturesPage';
+import OtpVerificationPage from './pages/OtpVerificationPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgetPassword darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
 
 
       </Routes>
