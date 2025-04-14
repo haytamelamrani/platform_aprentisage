@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
@@ -24,17 +25,31 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const dateInscription = new Date().toISOString().split('T')[0];
-    const dataToSend = { ...formData, role, dateInscription };
-    console.log("🚀 Données à envoyer :", dataToSend);
-    alert("Inscription simulée avec succès !");
+
     if (role === 'professeur' && formData.anneeExp < 5) {
       alert("L'expérience minimale requise est de 5 ans.");
       return;
     }
-    
+
+    const dateInscription = new Date().toISOString().split('T')[0];
+
+    const dataToSend = {
+      nom: formData.nom,
+      email: formData.email,
+      motdepasse: formData.password,
+      role,
+    };
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/register', dataToSend);
+      alert("✅ Inscription réussie !");
+      console.log(res.data);
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || "Erreur d'inscription";
+      alert("❌ " + errorMsg);
+    }
   };
 
   return (
@@ -94,7 +109,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
                 min="5"
                 onChange={handleChange}
                 required
-/>
+              />
             )}
 
             <button type="submit">S'inscrire</button>

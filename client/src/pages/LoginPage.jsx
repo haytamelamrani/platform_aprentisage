@@ -1,44 +1,47 @@
 import React, { useState } from 'react';
 import '../styles/LoginPage.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-
-const LoginPage = ({ darkMode, toggleMode }) => {
+const LoginPage = ({ darkMode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
-  
 
   const handleLogin = async (e) => {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    
-    e.preventDefault();
+    e.preventDefault(); // ✅ déplacer ici
+
     setMsg('Connexion en cours...');
-    // Simuler le login
-    setTimeout(() => {
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        motdepasse: password, // ✅ correspond à ce que le backend attend
+      });
+
+      const { token, user } = res.data;
+
+      // ✅ Stocker le token dans le localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userRole', user.role);
+      localStorage.setItem('userName', user.nom);
+
       setMsg('✅ Connexion réussie');
-    }, 1000);
-    if (res.ok) {
-      const data = await res.json();
-      
-      // Extrait le rôle de l'utilisateur
-      const role = data.role;
-    
-      // Redirection selon le rôle
-      if (role === 'etudiant') {
+
+      // ✅ Redirection selon le rôle
+      if (user.role === 'etudiant') {
         navigate('/student-dashboard');
-      } else if (role === 'professeur') {
+      } else if (user.role === 'professeur') {
         navigate('/teacher-dashboard');
       } else {
-        navigate('/user-dashboard');
+        navigate('/admin-dashboard');
       }
+
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || "Erreur de connexion";
+      setMsg('❌ ' + errorMessage);
     }
-    
   };
 
   return (
