@@ -35,4 +35,14 @@
   to {
     transform: rotate(360deg);
   }
+  
 }
+.logout-btn {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
