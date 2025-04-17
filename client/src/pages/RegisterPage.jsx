@@ -4,6 +4,7 @@ import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
 import Navbar from '../components/Navbar';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
@@ -112,7 +113,8 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
               />
             )}
 
-            <button type="submit">S'inscrire</button>
+           
+           <Link to="/login"><button type="submit">S'inscrire</button></Link>
           </form>
         )}
       </div>
