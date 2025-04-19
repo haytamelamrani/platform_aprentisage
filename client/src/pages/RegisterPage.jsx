@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
@@ -46,6 +47,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
     try {
       const res = await axios.post('http://localhost:5000/api/auth/register', dataToSend);
       alert("✅ Inscription réussie !");
+      navigate("/login");
       console.log(res.data);
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Erreur d'inscription";
@@ -114,7 +116,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
             )}
 
            
-           <Link to="/login"><button type="submit">S'inscrire</button></Link>
+           <button type="submit">S'inscrire</button>
           </form>
         )}
       </div>
