@@ -13,6 +13,7 @@ import UserProfile from './pages/UserProfile'; // ✅ profil utilisateur
 
 import AboutPage from './pages/AboutPage';
 import FeaturesPage from './pages/FeaturesPage';
+import OtpVerificationPage from './pages/OtpVerificationPage';
 
 import StudentDashboard from './pages/StudentDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword darkMode={darkMode} />} />
         <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
 
         {/* Page profil utilisateur */}
         <Route

@@ -3,10 +3,12 @@ import axios from 'axios';
 import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
@@ -50,6 +52,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
       const errorMsg = err.response?.data?.message || "Erreur d'inscription";
       alert("❌ " + errorMsg);
     }
+    navigate("/verify-otp");
   };
 
   return (
