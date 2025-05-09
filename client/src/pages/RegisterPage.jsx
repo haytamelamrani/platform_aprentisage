@@ -4,6 +4,10 @@ import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import Navbar from '../components/Navbar';
+>>>>>>> gestion_email
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
@@ -52,6 +56,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
       const errorMsg = err.response?.data?.message || "Erreur d'inscription";
       alert("❌ " + errorMsg);
     }
+    navigate("/verify-otp");
   };
 
   return (

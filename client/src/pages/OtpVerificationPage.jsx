@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import '../styles/OtpVerificationPage.css';
+<<<<<<< HEAD
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> gestion_email
 
 const OtpVerificationPage = ({ darkMode }) => {
   const [otp, setOtp] = useState('');
   const [message, setMessage] = useState('');
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+>>>>>>> gestion_email
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +25,27 @@ const OtpVerificationPage = ({ darkMode }) => {
       });
 
       const data = await res.json();
+<<<<<<< HEAD
       if (res.ok) {
         setMessage('✅ Code vérifié, accès autorisé.');
         // redirection possible ici
       } else {
         setMessage(data.message || '❌ Code invalide.');
+=======
+
+      if (res.ok) {
+        setMessage('✅ Code vérifié, accès autorisé.');
+        navigate('/login'); // redirection après succès
+      } else {
+        setMessage(data.message || '❌ Code invalide.');
+
+        // 🔁 Si on reçoit une erreur liée à 3 tentatives, redirection automatique
+        if (data.message && data.message.includes('Trop de tentatives')) {
+          setTimeout(() => {
+            navigate('/register'); // redirection vers inscription
+          }, 3000); // délai pour laisser lire le message
+        }
+>>>>>>> gestion_email
       }
     } catch (err) {
       setMessage('❌ Erreur serveur.');

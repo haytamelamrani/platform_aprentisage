@@ -2,6 +2,17 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const envoyerCodeParEmail = require('../email/gestionemail');
+let code = generateNumericCode(6);
+function generateNumericCode(length = 6) {
+  let code = '';
+  let num = 0;
+  for (let i = 0; i < length; i++) {
+    num = Math.floor(Math.random() * 10); 
+    code += ''+num;
+  }
+  return code;
+};
 
 // 🔐 Inscription
 exports.register = async (req, res) => {
@@ -9,7 +20,8 @@ exports.register = async (req, res) => {
     const { nom, email, motdepasse, role } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email déjà utilisé' });
-
+    code = generateNumericCode(6);
+    envoyerCodeParEmail(email,code); 
     const hashedPassword = await bcrypt.hash(motdepasse, 10);
     const newUser = new User({ nom, email, motdepasse: hashedPassword, role });
     await newUser.save();
@@ -19,6 +31,22 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
 };
+// 🔑 Vérification du code OTP
+
+exports.verifyOtp = async (req, res) => {
+  let cp=0;
+  try {
+    const { otp } = req.body;
+
+    // Vérifier si l'OTP envoyé par l'utilisateur correspond au code généré
+    if (otp !== code) {
+      return res.status(400).json({ message: '❌ Code OTP invalide ou expiré.' });
+    }
+    res.status(200).json({ message: '✅ Code OTP vérifié, compte activé.' });
+  } catch (error) {
+    res.status(500).json({ message: '❌ Erreur serveur lors de la vérification du code OTP.', error: error.message });
+  }
+}
 
 
 // 🔐 Connexion

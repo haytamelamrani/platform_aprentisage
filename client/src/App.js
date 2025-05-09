@@ -29,6 +29,7 @@ function App() {
   }, [darkMode]);
 
   return (
+    
     <Router>
       <Navbar darkMode={darkMode} toggleMode={toggleMode} />
 
