@@ -19,12 +19,19 @@ const OtpVerificationPage = ({ darkMode }) => {
       });
 
       const data = await res.json();
+
       if (res.ok) {
         setMessage('✅ Code vérifié, accès autorisé.');
-        // Rediriger vers la page de login après vérification réussie
-        navigate('/login');
+        navigate('/login'); // redirection après succès
       } else {
         setMessage(data.message || '❌ Code invalide.');
+
+        // 🔁 Si on reçoit une erreur liée à 3 tentatives, redirection automatique
+        if (data.message && data.message.includes('Trop de tentatives')) {
+          setTimeout(() => {
+            navigate('/register'); // redirection vers inscription
+          }, 3000); // délai pour laisser lire le message
+        }
       }
     } catch (err) {
       setMessage('❌ Erreur serveur.');
