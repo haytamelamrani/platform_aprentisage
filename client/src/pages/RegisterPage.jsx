@@ -4,7 +4,7 @@ import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar'; // ✅ Conflit résolu ici
+import Navbar from '../components/Navbar';
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
@@ -48,7 +48,6 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
       const res = await axios.post('http://localhost:5000/api/auth/register', dataToSend);
       alert("✅ Inscription réussie !");
       console.log(res.data);
-      navigate("/login");
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Erreur d'inscription";
       alert("❌ " + errorMsg);
@@ -58,7 +57,6 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
 
   return (
     <div className={`register-page ${darkMode ? 'dark-mode' : ''}`}>
-      <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       <div className="register-container">
         <h2>Créer un compte</h2>
 
