@@ -12,11 +12,7 @@ router.post('/forgot-password', authController.forgotPassword);
 // 🔄 Réinitialisation de mot de passe
 router.post('/reset-password/:token', authController.resetPassword);
 
-<<<<<<< HEAD
-module.exports = router;
-=======
-// Vérification OTP
+// ✅ Vérification OTP
 router.post('/verify-otp', authController.verifyOtp);
 
 module.exports = router;
->>>>>>> gestion_email
