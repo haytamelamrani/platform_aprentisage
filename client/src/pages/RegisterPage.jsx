@@ -4,10 +4,7 @@ import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-import Navbar from '../components/Navbar';
->>>>>>> gestion_email
+import Navbar from '../components/Navbar'; // ✅ Conflit résolu ici
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
@@ -61,6 +58,7 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
 
   return (
     <div className={`register-page ${darkMode ? 'dark-mode' : ''}`}>
+      <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       <div className="register-container">
         <h2>Créer un compte</h2>
 
