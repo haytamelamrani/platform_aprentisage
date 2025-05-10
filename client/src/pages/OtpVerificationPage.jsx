@@ -1,53 +1,38 @@
 import React, { useState } from 'react';
-import '../styles/OtpVerificationPage.css';
-<<<<<<< HEAD
-=======
 import { useNavigate } from 'react-router-dom';
->>>>>>> gestion_email
+import '../styles/OtpVerificationPage.css';
 
 const OtpVerificationPage = ({ darkMode }) => {
   const [otp, setOtp] = useState('');
   const [message, setMessage] = useState('');
-<<<<<<< HEAD
-=======
   const navigate = useNavigate();
->>>>>>> gestion_email
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('🔄 Vérification en cours...');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const response = await fetch('http://localhost:5000/api/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ otp }),
       });
 
-      const data = await res.json();
-<<<<<<< HEAD
-      if (res.ok) {
-        setMessage('✅ Code vérifié, accès autorisé.');
-        // redirection possible ici
-      } else {
-        setMessage(data.message || '❌ Code invalide.');
-=======
+      const data = await response.json();
 
-      if (res.ok) {
+      if (response.ok) {
         setMessage('✅ Code vérifié, accès autorisé.');
-        navigate('/login'); // redirection après succès
+        navigate('/login');
       } else {
         setMessage(data.message || '❌ Code invalide.');
 
-        // 🔁 Si on reçoit une erreur liée à 3 tentatives, redirection automatique
         if (data.message && data.message.includes('Trop de tentatives')) {
           setTimeout(() => {
-            navigate('/register'); // redirection vers inscription
-          }, 3000); // délai pour laisser lire le message
+            navigate('/register');
+          }, 3000);
         }
->>>>>>> gestion_email
       }
-    } catch (err) {
+    } catch (error) {
       setMessage('❌ Erreur serveur.');
     }
   };
