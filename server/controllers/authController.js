@@ -2,52 +2,59 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const envoyerCodeParEmail = require('../email/gestionemail');
-let code = generateNumericCode(6);
+
+const { envoyerCodeParEmail, envoyerMessageParEmail } = require('../email/gestionemail');
+
+// Utilisé pour stocker temporairement les OTP par utilisateur (clé = email)
+const otpMap = new Map();
+
 function generateNumericCode(length = 6) {
   let code = '';
-  let num = 0;
   for (let i = 0; i < length; i++) {
-    num = Math.floor(Math.random() * 10); 
-    code += ''+num;
+    code += Math.floor(Math.random() * 10);
   }
   return code;
-};
+}
 
 // 🔐 Inscription
 exports.register = async (req, res) => {
   try {
     const { nom, email, motdepasse, role } = req.body;
+
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email déjà utilisé' });
-    code = generateNumericCode(6);
-    envoyerCodeParEmail(email,code); 
+
+    const code = generateNumericCode(6);
+    otpMap.set(email, code); // Stocke l’OTP temporairement
+    envoyerCodeParEmail(email, code);
+
     const hashedPassword = await bcrypt.hash(motdepasse, 10);
     const newUser = new User({ nom, email, motdepasse: hashedPassword, role });
     await newUser.save();
 
-    res.status(201).json({ message: 'Inscription réussie' });
+    res.status(201).json({ message: 'Inscription réussie. Veuillez vérifier le code envoyé à votre email.' });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
 };
+
 // 🔑 Vérification du code OTP
-
 exports.verifyOtp = async (req, res) => {
-  let cp=0;
   try {
-    const { otp } = req.body;
+    const { email, otp } = req.body;
+    const expectedOtp = otpMap.get(email);
 
-    // Vérifier si l'OTP envoyé par l'utilisateur correspond au code généré
-    if (otp !== code) {
+    if (!expectedOtp || otp !== expectedOtp) {
       return res.status(400).json({ message: '❌ Code OTP invalide ou expiré.' });
     }
+
+    otpMap.delete(email); // Supprimer le code une fois vérifié
     res.status(200).json({ message: '✅ Code OTP vérifié, compte activé.' });
   } catch (error) {
     res.status(500).json({ message: '❌ Erreur serveur lors de la vérification du code OTP.', error: error.message });
   }
-}
-
+};
 
 // 🔐 Connexion
 exports.login = async (req, res) => {
@@ -82,11 +89,15 @@ exports.forgotPassword = async (req, res) => {
     user.resetTokenExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save();
 
-    const resetLink =` http://localhost:3000/reset-password/${resetToken}`;
+    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+    const message = `Voici votre lien pour modifier votre mot de passe : ${resetLink}`;
+
+    await envoyerMessageParEmail(email, message);
     console.log("🔗 Lien de réinitialisation :", resetLink);
 
     res.status(200).json({ message: "Lien de réinitialisation généré avec succès." });
   } catch (err) {
+    console.error("Erreur dans forgotPassword :", err);
     res.status(500).json({ message: "Erreur serveur." });
   }
 };
@@ -138,6 +149,8 @@ exports.changePassword = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur.' });
   }
 };
+
+// 🔄 Mise à jour du profil utilisateur
 exports.updateProfile = async (req, res) => {
   const { nom, email } = req.body;
 

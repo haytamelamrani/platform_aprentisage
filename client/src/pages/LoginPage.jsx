@@ -33,7 +33,7 @@ const LoginPage = ({ darkMode }) => {
       if (user.role === 'etudiant') {
         navigate('/student-dashboard');
       } else if (user.role === 'professeur') {
-        navigate('/teacher-dashboard');
+        navigate('/Prof');
       } else {
         navigate('/admin-dashboard');
       }

@@ -33,9 +33,16 @@ const isProfesseur = (req, res, next) => {
   }
   next();
 };
+const isEtudiant = (req, res, next) => {
+  if (req.user.role !== 'etudiant') {
+    return res.status(403).json({ message: 'Accès réservé aux étudiants.' });
+  }
+  next();
+};
 
 module.exports = {
   authMiddleware,
   isAdmin,
-  isProfesseur
+  isProfesseur,
+  isEtudiant
 };
