@@ -1,0 +1,163 @@
+.add-course-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .add-course-container:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Titres */
+  .add-course-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .add-course-container h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .add-course-container.dark-mode h2,
+  .add-course-container.dark-mode h3 {
+    color: #f1f1f1;
+  }
+  
+  /* Formulaire */
+  .add-course-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Inputs et Textarea */
+  .add-course-container input[type="text"],
+  .add-course-container textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
+  }
+  
+  .add-course-container textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  
+  /* Bloc de fichier */
+  .add-course-container div {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+  }
+  
+  .add-course-container.dark-mode div {
+    background: #2a2a2a;
+  }
+  
+  /* Input file */
+  .add-course-container input[type="file"] {
+    margin-bottom: 8px;
+  }
+  
+  /* Séparateur */
+  .add-course-container hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+  
+  /* Petit bouton pour ajouter un autre fichier/image */
+  .add-course-container button[type="button"] {
+    margin-top: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: start;
+    transition: background-color 0.2s;
+  }
+  
+  .add-course-container button[type="button"]:hover {
+    background-color: #218838;
+  }
+  
+  /* Gros bouton principal */
+  .add-course-container button[type="submit"] {
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    transition: background-color 0.2s;
+  }
+  
+  .add-course-container button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mode sombre pour les champs */
+  .add-course-container.dark-mode {
+    background: #222;
+    color: #f1f1f1;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+  
+  .add-course-container.dark-mode input[type="text"],
+  .add-course-container.dark-mode textarea {
+    background: #333;
+    color: #f1f1f1;
+    border: 1px solid #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .add-course-container {
+      margin: 20px;
+      padding: 20px;
+    }
+  
+    .add-course-container h2 {
+      font-size: 20px;
+    }
+  
+    .add-course-container button[type="submit"] {
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
+  /* Bouton de suppression */
+.add-course-container .btn-delete {
+    margin-top: 5px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: start;
+    transition: background-color 0.2s;
+  }
+  
+  .add-course-container .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+  
