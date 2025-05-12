@@ -19,6 +19,7 @@ import StudentDashboard from './pages/StudentDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Logout from './pages/Logout';
+import AddCoursePage from './pages/AddCoursePage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -43,6 +44,7 @@ function App() {
         <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
+        <Route path="/add-course" element={<AddCoursePage darkMode={darkMode} toggleMode={toggleMode} />} />
 
         {/* Page profil utilisateur */}
         <Route
