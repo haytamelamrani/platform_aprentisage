@@ -19,6 +19,7 @@ import StudentDashboard from './pages/StudentDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Logout from './pages/Logout';
+import AddCoursePage from './pages/AddCoursePage';
 
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
@@ -42,6 +43,7 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
+        <Route path="/add-course" element={<AddCoursePage darkMode={darkMode} toggleMode={toggleMode} />} />
 
         <Route path="/profile" element={<ProtectedRoute><UserProfile darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
