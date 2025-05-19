@@ -98,7 +98,7 @@
   .add-course-container button[type="submit"] {
     margin-top: 20px;
     padding: 16px;
-    background-color: #007bff;
+    background-color: #00aa66;
     color: white;
     border: none;
     border-radius: 8px;
@@ -109,7 +109,7 @@
   }
   
   .add-course-container button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color:  #218838;
   }
   
   /* Mode sombre pour les champs */

@@ -24,7 +24,7 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Link to="/" className="logo">SmartLearn</Link>
+      <Link to="/Prof" className="logo">SmartLearn</Link>
 
       <img
         src={menuIcon}
@@ -34,9 +34,9 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
       />
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-        <li><Link to="">Cours</Link></li>
-        <li><Link to="">Gestion Cour</Link></li>
-        <li><Link to="">Gestion Quiz</Link></li>
+        <li><Link to="/Prof/cours">Cours</Link></li>
+        <li><Link to="/Prof/addcours">Gestion Cour</Link></li>
+        <li><Link to="/Prof/addqcm">Gestion Quiz</Link></li>
         <li><Link to="">IA</Link></li>
 
         {!isLoggedIn && (

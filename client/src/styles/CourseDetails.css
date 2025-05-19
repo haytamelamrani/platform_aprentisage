@@ -1,0 +1,69 @@
+.course-details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.pdf-card {
+  background: var(--card-bg, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.pdf-frame-container {
+  position: relative;
+  padding-bottom: 65%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+}
+
+.pdf-frame {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.download-link:hover {
+  text-decoration: underline;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.image-item {
+  max-width: 300px;
+}
+
+.image-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.dark-mode .pdf-card {
+  background: #1e1e1e;
+  color: #eee;
+  border: 1px solid #444;
+}
+
+.light-mode .pdf-card {
+  background: #ffffff;
+  color: #000;
+}

@@ -3,7 +3,6 @@ const router = express.Router();
 const { authMiddleware, isAdmin, isProfesseur } = require('../middleware/authMiddleware');
 const authController = require('../controllers/authController');
 
-
 // 🧠 Récupérer l'utilisateur connecté
 router.get('/me', authMiddleware, (req, res) => {
   res.json({ message: 'Bienvenue utilisateur authentifié', user: req.user });
@@ -21,6 +20,10 @@ router.get('/prof', authMiddleware, isProfesseur, (req, res) => {
 
 // 🔄 Changer le mot de passe (depuis profil connecté)
 router.put('/change-password', authMiddleware, authController.changePassword);
+
+// 🧾 Mise à jour du profil
 router.put('/update-profile', authMiddleware, authController.updateProfile);
+
+
 
 module.exports = router;

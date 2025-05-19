@@ -17,10 +17,55 @@ function AddCoursePage({ darkMode }) {
   const supprimerImage = (index) => setImages(images.filter((_, i) => i !== index));
   const supprimerVideo = () => { setVideo(null); setCommentaireVideo(''); };
 
-  const envoyerCours = (e) => {
+  const envoyerCours = async (e) => {
     e.preventDefault();
-    console.log({ titre, description, pdfs, images, video, commentaireVideo });
-    alert('Cours ajouté avec succès !');
+    const formData = new FormData();
+    formData.append("titre", titre);
+    formData.append("description", description);
+    
+    // Ajouter les fichiers PDF
+    pdfs.forEach((pdf) => {
+      if (pdf.file) formData.append("pdfs", pdf.file);
+    });
+    formData.append("pdfDescriptions", JSON.stringify(pdfs.map(pdf => pdf.text)));
+
+    // Ajouter les images
+    images.forEach((img) => {
+      if (img.file) formData.append("images", img.file);
+    });
+    formData.append("imageDescriptions", JSON.stringify(images.map(img => img.comment)));
+
+    // Ajouter la vidéo
+    if (video) formData.append("video", video);
+    formData.append("commentaireVideo", commentaireVideo);
+
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch("http://localhost:5000/api/courses/add", {
+      method: "POST",
+      headers: {
+      Authorization: `Bearer ${token}`
+      },
+      body: formData
+      });
+      
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        setTitre('');
+        setDescription('');
+        setPdfs([{ file: null, text: '' }]);
+        setImages([{ file: null, comment: '' }]);
+        setVideo(null);
+        setCommentaireVideo('');
+      } else {
+        alert("Erreur : " + data.message);
+      }
+    } catch (error) {
+      console.error("Erreur d’envoi :", error);
+      alert("Erreur réseau ou serveur.");
+    }
   };
 
   return (
@@ -33,7 +78,6 @@ function AddCoursePage({ darkMode }) {
 
         <hr />
 
-        {/* PDFs */}
         <h3>Ajouter des PDFs</h3>
         {pdfs.map((pdf, index) => (
           <div key={index}>
@@ -54,7 +98,6 @@ function AddCoursePage({ darkMode }) {
 
         <hr />
 
-        {/* Images */}
         <h3>Ajouter des Images</h3>
         {images.map((img, index) => (
           <div key={index}>
@@ -75,7 +118,6 @@ function AddCoursePage({ darkMode }) {
 
         <hr />
 
-        {/* Vidéo */}
         <h3>Ajouter une Vidéo</h3>
         {video ? (
           <div>
