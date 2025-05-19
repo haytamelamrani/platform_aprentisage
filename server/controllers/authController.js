@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 const { envoyerCodeParEmail, envoyerMessageParEmail } = require('../email/gestionemail');
-
+let code='';
 // Utilisé pour stocker temporairement les OTP par utilisateur (clé = email)
 const otpMap = new Map();
 
@@ -24,7 +24,7 @@ exports.register = async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email déjà utilisé' });
 
-    const code = generateNumericCode(6);
+    code = generateNumericCode(6);
     otpMap.set(email, code); // Stocke l’OTP temporairement
     envoyerCodeParEmail(email, code);
 
@@ -41,20 +41,19 @@ exports.register = async (req, res) => {
 
 // 🔑 Vérification du code OTP
 exports.verifyOtp = async (req, res) => {
+  let cp=0;
   try {
-    const { email, otp } = req.body;
-    const expectedOtp = otpMap.get(email);
+    const { otp } = req.body;
 
-    if (!expectedOtp || otp !== expectedOtp) {
+    // Vérifier si l'OTP envoyé par l'utilisateur correspond au code généré
+    if (otp !== code) {
       return res.status(400).json({ message: '❌ Code OTP invalide ou expiré.' });
     }
-
-    otpMap.delete(email); // Supprimer le code une fois vérifié
     res.status(200).json({ message: '✅ Code OTP vérifié, compte activé.' });
   } catch (error) {
     res.status(500).json({ message: '❌ Erreur serveur lors de la vérification du code OTP.', error: error.message });
   }
-};
+}
 
 // 🔐 Connexion
 exports.login = async (req, res) => {
@@ -167,3 +166,4 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur.' });
   }
 };
+

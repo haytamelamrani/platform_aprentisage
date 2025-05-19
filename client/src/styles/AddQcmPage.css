@@ -1,0 +1,122 @@
+.add-qcm-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .add-qcm-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .add-qcm-container input[type="text"],
+  .add-qcm-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .add-qcm-container button {
+    padding: 10px 18px;
+    margin-top: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-qcm-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    margin-left: 10px;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c0392b;
+  }
+  
+  .qcm-question-block {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .qcm-question-block h3 {
+    margin-top: 0;
+  }
+  
+  .qcm-question-block hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+  }
+  
+  select:focus {
+    border-color: #45a049;
+    outline: none;
+  }
+  
+  option {
+    padding: 10px;
+  }
+  
+  /* Mode sombre */
+  .dark-mode {
+    background-color: #1f1f1f;
+    color: #f1f1f1;
+  }
+  
+  .dark-mode input[type="text"],
+  .dark-mode textarea {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+  }
+  
+  .dark-mode .add-qcm-container {
+    background-color: #2a2a2a;
+  }
+  
+  .dark-mode .qcm-question-block {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+  }
+  
+  .dark-mode select {
+    background-color: #2e2e2e;
+    color: #fff;
+    border: 2px solid #555;
+  }
+  
+  .dark-mode select:focus {
+    border-color: #45a049;
+  }
+  

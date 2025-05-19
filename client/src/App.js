@@ -20,7 +20,9 @@ import TeacherDashboard from './pages/TeacherDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Logout from './pages/Logout';
 import AddCoursePage from './pages/AddCoursePage';
-
+import AddQCMPage from './pages/AddQcmPage';
+import CoursesPage from './pages/Courses';
+import CourseDetailsPage from './pages/CourseDetails';
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -43,11 +45,18 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/about" element={<AboutPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
-        <Route path="/add-course" element={<AddCoursePage darkMode={darkMode} toggleMode={toggleMode} />} />
+        <Route path="/courses" element={<CoursesPage darkMode={darkMode} />} />
 
         <Route path="/profile" element={<ProtectedRoute><UserProfile darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+
         <Route path="/Prof" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />
+        <Route path="/Prof/addcours" element={<ProtectedRoute><AddCoursePage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
+        <Route path="/Prof/addqcm" element={<ProtectedRoute><AddQCMPage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
+        <Route path="/Prof/cours" element={<ProtectedRoute><CoursesPage darkMode={darkMode} /></ProtectedRoute>} />
+        <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>}/>
+
+
         <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
         <Route path="/logout" element={<Logout />} />
