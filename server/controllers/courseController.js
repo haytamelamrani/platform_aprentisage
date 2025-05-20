@@ -8,13 +8,16 @@ exports.createCourse = async (req, res) => {
     const {
       titre,
       description,
+      nomProf,
       pdfDescriptions,
       imageDescriptions,
-      commentaireVideo
+      commentaireVideo,
+      textes // ✅ ici on récupère les textes
     } = req.body;
 
     const parsedPdfDescriptions = pdfDescriptions ? JSON.parse(pdfDescriptions) : [];
     const parsedImageDescriptions = imageDescriptions ? JSON.parse(imageDescriptions) : [];
+    const parsedTextes = textes ? JSON.parse(textes) : [];
 
     const pdfs = req.files['pdfs']?.map((file, i) => ({
       filename: file.filename,
@@ -26,24 +29,23 @@ exports.createCourse = async (req, res) => {
       comment: parsedImageDescriptions[i] || ''
     })) || [];
 
-    const videoFile = req.files['video']?.[0];
-    const video = videoFile
-      ? {
-          filename: videoFile.filename,
-          comment: commentaireVideo || ''
-        }
-      : null;
+    const videos = req.files['video']?.map((file) => ({
+      filename: file.filename,
+      comment: commentaireVideo || ''
+    })) || [];
 
     const newCourse = new Course({
       titre,
       description,
+      nomProf,
+      textes: parsedTextes, // ✅ ajout des textes
       pdfs,
       images,
-      video
+      video: videos
     });
 
     await newCourse.save();
-    
+
     const users = await User.find({ role: 'etudiant' });
 
     for (const user of users) {
@@ -54,7 +56,9 @@ exports.createCourse = async (req, res) => {
         console.warn(`❌ Échec de l’envoi à ${user.email} :`, err.message);
       }
     }
+
     res.status(201).json({ message: 'Cours enregistré avec succès et notifications envoyées !' });
+
   } catch (err) {
     console.error('Erreur createCourse :', err);
     res.status(500).json({ message: "Erreur lors de l'enregistrement du cours" });

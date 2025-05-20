@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const courseSchema = new mongoose.Schema({
   titre: String,
   description: String,
+  nomProf: String,
   pdfs: [
     {
-      filename: String, // ✅ plus besoin de fileId
+      filename: String,
       description: String
     }
   ],
@@ -15,10 +16,31 @@ const courseSchema = new mongoose.Schema({
       comment: String
     }
   ],
-  video: {
-    filename: String,
-    comment: String
-  },
+  video: [
+    {
+      filename: String,
+      comment: String
+    }
+  ],
+  ratings: [
+    {
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+      stars: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+      }
+    }
+  ],
+  textes: [
+    {
+      contenu: String
+    }
+  ],  
   createdAt: {
     type: Date,
     default: Date.now
