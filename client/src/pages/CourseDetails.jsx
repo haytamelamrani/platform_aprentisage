@@ -8,6 +8,14 @@ const CourseDetailsPage = ({ darkMode }) => {
   const [course, setCourse] = useState(null);
   const [error, setError] = useState('');
 
+  // 🔗 Fonction pour transformer les URLs en liens HTML cliquables
+  const convertLinks = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => {
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:5000/api/courses/search?titre=${titre}`)
       .then((res) => {
@@ -31,7 +39,24 @@ const CourseDetailsPage = ({ darkMode }) => {
       <h1>{course.titre}</h1>
       <p>{course.description}</p>
 
-      {course.pdfs.length > 0 && (
+      {/* 📝 Textes */}
+      {course.textes && course.textes.length > 0 && (
+        <>
+          <h2>📝 Contenu du cours</h2>
+          {course.textes.map((txt, idx) => (
+            <div key={idx} className="texte-block">
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: convertLinks(txt.contenu)
+                }}
+              />
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* 📄 PDFs */}
+      {course.pdfs && course.pdfs.length > 0 && (
         <>
           <h2>📄 PDFs</h2>
           {course.pdfs.map((pdf, idx) => (
@@ -57,7 +82,8 @@ const CourseDetailsPage = ({ darkMode }) => {
         </>
       )}
 
-      {course.images.length > 0 && (
+      {/* 🖼️ Images */}
+      {course.images && course.images.length > 0 && (
         <>
           <h2>🖼️ Images</h2>
           <div className="image-gallery">
@@ -74,14 +100,19 @@ const CourseDetailsPage = ({ darkMode }) => {
         </>
       )}
 
-      {course.video && (
+      {/* 🎬 Vidéos */}
+      {course.video && course.video.length > 0 && (
         <>
-          <h2>🎬 Vidéo</h2>
-          <video width="100%" height="480" controls>
-            <source src={`http://localhost:5000/uploads/${course.video.filename}`} type="video/mp4" />
-            Votre navigateur ne prend pas en charge la vidéo.
-          </video>
-          <p>{course.video.comment}</p>
+          <h2>🎬 Vidéos</h2>
+          {course.video.map((vid, idx) => (
+            <div key={idx} className="video-item">
+              <video width="100%" height="480" controls>
+                <source src={`http://localhost:5000/uploads/${vid.filename}`} type="video/mp4" />
+                Votre navigateur ne prend pas en charge la vidéo.
+              </video>
+              <p>{vid.comment}</p>
+            </div>
+          ))}
         </>
       )}
     </div>
