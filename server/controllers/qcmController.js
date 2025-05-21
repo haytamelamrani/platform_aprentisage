@@ -1,5 +1,7 @@
+const mongoose = require('mongoose');
 const Qcm = require('../models/Qcm');
 
+// ✅ Enregistrement de plusieurs QCMs liés à un cours
 exports.addMultipleQcm = async (req, res) => {
   const { courseId, questions } = req.body;
 
@@ -11,7 +13,7 @@ exports.addMultipleQcm = async (req, res) => {
     const savedQcms = await Promise.all(
       questions.map(async (q) => {
         const newQcm = new Qcm({
-          course: courseId,
+          course: new mongoose.Types.ObjectId(courseId),
           question: q.question,
           correctAnswer: q.correctAnswer,
           wrongAnswers: q.wrongAnswers
@@ -25,23 +27,26 @@ exports.addMultipleQcm = async (req, res) => {
       data: savedQcms
     });
   } catch (error) {
-    console.error('Erreur lors de l’enregistrement des QCMs :', error);
+    console.error('❌ Erreur lors de l’enregistrement des QCMs :', error);
     res.status(500).json({ message: 'Erreur serveur.' });
   }
 };
 
+// ✅ Récupération des QCMs par ID du cours depuis l’URL
 exports.getQcmByCourse = async (req, res) => {
-  const { courseId } = req.params;
+  const { idcour } = req.params;
 
   try {
-    const qcms = await Qcm.find({ course: courseId });
+    const objectId = new mongoose.Types.ObjectId(idcour);
+    const qcms = await Qcm.find({ course: objectId });
+
     if (!qcms.length) {
       return res.status(404).json({ message: 'Aucun QCM trouvé pour ce cours.' });
     }
 
     res.status(200).json({ qcms });
   } catch (error) {
-    console.error('Erreur lors de la récupération des QCMs :', error);
+    console.error('❌ Erreur lors de la récupération des QCMs :', error);
     res.status(500).json({ message: 'Erreur serveur.' });
   }
 };
