@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema({
     enum: ['etudiant', 'professeur', 'admin'],
     default: 'etudiant'
   },
-  resetToken: { type: String },
-  resetTokenExpire: { type: Date }
+  resetToken: String,
+  resetTokenExpire: Date
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
