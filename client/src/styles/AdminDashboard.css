@@ -1,0 +1,43 @@
+.admin-dashboard {
+    padding: 2rem;
+    color: #f4f4f4;
+    background-color: #1e1e2f;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 24px;
+  }
+  
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-box {
+    background: #2d2d44;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  .quick-actions button {
+    margin-right: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #4e54c8;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .quick-actions button:hover {
+    background: #6c70f3;
+  }
+  
