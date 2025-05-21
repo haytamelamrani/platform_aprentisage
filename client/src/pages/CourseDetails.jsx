@@ -8,7 +8,6 @@ const CourseDetailsPage = ({ darkMode }) => {
   const [course, setCourse] = useState(null);
   const [error, setError] = useState('');
 
-  // 🔗 Fonction pour transformer les URLs en liens HTML cliquables
   const convertLinks = (text) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, (url) => {
@@ -17,7 +16,8 @@ const CourseDetailsPage = ({ darkMode }) => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/courses/search?titre=${titre}`)
+    axios
+      .get(`http://localhost:5000/api/courses/search?titre=${titre}`)
       .then((res) => {
         if (res.data.length > 0) {
           setCourse(res.data[0]);
@@ -115,6 +115,17 @@ const CourseDetailsPage = ({ darkMode }) => {
           ))}
         </>
       )}
+
+      {/* 📌 Lien vers le QCM */}
+      <div className="qcm-link-container">
+        
+        <p>
+          <a href={`/Prof/Qcm/${course._id}`} className="qcm-link">
+            <h2>📌 Passer le QCM</h2>
+            
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

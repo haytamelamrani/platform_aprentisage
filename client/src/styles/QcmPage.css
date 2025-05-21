@@ -1,0 +1,80 @@
+/* 🌿 Light mode */
+.qcm-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  color: #111827; /* Texte noir */
+}
+
+.qcm-container h2 {
+  color: #14532d;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.qcm-block {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  transition: box-shadow 0.2s ease;
+}
+
+.qcm-block:hover {
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);
+}
+
+.qcm-block p {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.answer-option {
+  display: block;
+  margin: 8px 0;
+  padding: 8px 12px;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.answer-option:hover {
+  background-color: #e5e7eb;
+}
+
+.answer-option input {
+  margin-right: 8px;
+}
+
+.submit-button {
+  background-color: #16a34a;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 30px auto 10px;
+}
+
+.submit-button:hover {
+  background-color: #15803d;
+}
+
+.result {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #166534;
+  font-weight: bold;
+}
