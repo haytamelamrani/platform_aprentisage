@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // 👈 Nécessaire
+import { Link } from 'react-router-dom'; 
 import '../styles/Courses.css';
 
 const CoursesPage = ({ darkMode }) => {
@@ -29,6 +29,7 @@ const CoursesPage = ({ darkMode }) => {
 
   return (
     <div className={`courses-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      
       <h1>Cours disponibles</h1>
 
       <input

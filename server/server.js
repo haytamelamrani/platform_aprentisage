@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const courseRoutes = require('./routes/course');
 const qcmRoutes = require('./routes/qcm');
+const assistantRoute = require('./routes/assistant');
 
 
 
@@ -26,6 +27,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/qcm', qcmRoutes);
+app.use('/api/assistant', assistantRoute);
+
 
 // ✅ Route d'accueil
 app.get('/', (req, res) => {
