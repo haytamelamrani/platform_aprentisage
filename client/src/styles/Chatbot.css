@@ -1,0 +1,153 @@
+/* === BOUTON FLOTTANT AVEC IMAGE === */
+.chatbot-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 255, 51, 0.35);
+  background-color: #00cc66;
+}
+
+.chatbot-button img.chatbot-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* === FENETRE DE CHAT === */
+.chatbot-box {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 340px;
+  height: 460px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  border: 2px solid #00cc66;
+}
+
+.chatbot-box h4 {
+  margin: 0;
+  background: #00cc66;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* === ZONE MESSAGES === */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #f6f6f6;
+}
+
+/* === MESSAGE USER === */
+.message.user {
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.message.user .text {
+  background-color: #00cc66;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 18px 18px 0 18px;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.message.user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* === MESSAGE BOT === */
+.message.bot {
+  align-self: flex-start;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.message.bot .text {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 10px 14px;
+  border-radius: 18px 18px 18px 0;
+  max-width: 75%;
+  font-size: 14px;
+}
+
+.message.bot img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* === ZONE D'ENTRÉE MESSAGE === */
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+  background: rgb(0, 0, 0);
+}
+
+.input-area textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+  background: rgb(19, 18, 18);
+}
+
+.input-area button {
+  background: #00cc66;
+  color: white;
+  border: none;
+  padding: 0 18px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.input-area button:hover {
+  background: #029a50;
+}
+
+/* === SCROLL SMOOTH === */
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
