@@ -37,7 +37,7 @@ function AppContent({ darkMode, toggleMode }) {
       ) : (
         <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       )}
-
+        
 
       <Routes>
         <Route path="/" element={<HomePage darkMode={darkMode} toggleMode={toggleMode} />} />
