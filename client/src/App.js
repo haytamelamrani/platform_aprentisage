@@ -27,11 +27,12 @@ import QcmPage from './pages/QcmPage';
 import HtmlRunner from './pages/Game';
 
 import StudentFeedback from './components/StudentFeedback';
-import Chatbot from './components/Chatbot'; // ✅ Si tu l’utilises dans une page, n’oublie pas
+import Chatbot from './components/Chatbot';
 
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
   const currentPath = location.pathname;
+
 
   return (
     <>
@@ -67,6 +68,8 @@ function AppContent({ darkMode, toggleMode }) {
 
         <Route path="/logout" element={<Logout />} />
       </Routes>
+
+      <Chatbot />
     </>
   );
 }
