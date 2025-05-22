@@ -1,28 +1,16 @@
 const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
-  titre: String,
+  titre: { type: String, required: true },
   description: String,
-  pdfs: [
-    {
-      filename: String, // ✅ plus besoin de fileId
-      description: String
-    }
-  ],
-  images: [
-    {
-      filename: String,
-      comment: String
-    }
-  ],
-  video: {
-    filename: String,
-    comment: String
+  nomProf: String,
+  fichiers: {
+    pdfs: [String],
+    images: [String],
+    videos: [String],
+    textes: [String],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Course', courseSchema);

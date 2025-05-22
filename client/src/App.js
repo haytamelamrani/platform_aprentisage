@@ -23,8 +23,12 @@ import AddCoursePage from './pages/AddCoursePage';
 import AddQCMPage from './pages/AddQcmPage';
 import CoursesPage from './pages/Courses';
 import CourseDetailsPage from './pages/CourseDetails';
+import QcmPage from './pages/QcmPage';
+import HtmlRunner from './pages/Game';
+
 import StudentFeedback from './components/StudentFeedback';
-import Chatbot from './components/Chatbot';
+import Chatbot from './components/Chatbot'; // ✅ Si tu l’utilises dans une page, n’oublie pas
+
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -37,9 +41,7 @@ function AppContent({ darkMode, toggleMode }) {
         <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       )}
 
-
       <Routes>
-        
         <Route path="/" element={<HomePage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/login" element={<LoginPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/register" element={<RegisterPage darkMode={darkMode} toggleMode={toggleMode} />} />
@@ -49,19 +51,19 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/features" element={<FeaturesPage darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/verify-otp" element={<OtpVerificationPage darkMode={darkMode} />} />
         <Route path="/courses" element={<CoursesPage darkMode={darkMode} />} />
+        <Route path="/game" element={<HtmlRunner darkMode={darkMode} />} />
+        <Route path="/SudentFeedBack" element={<StudentFeedback darkMode={darkMode} toggleMode={toggleMode} />} />
 
         <Route path="/profile" element={<ProtectedRoute><UserProfile darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+        <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
-        <Route path="/SudentFeedBack" element={<StudentFeedback darkMode={darkMode} toggleMode={toggleMode} />} />
         <Route path="/Prof" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />
         <Route path="/Prof/addcours" element={<ProtectedRoute><AddCoursePage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
         <Route path="/Prof/addqcm" element={<ProtectedRoute><AddQCMPage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
         <Route path="/Prof/cours" element={<ProtectedRoute><CoursesPage darkMode={darkMode} /></ProtectedRoute>} />
-        <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>}/>
-
-
-        <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>} />
+        <Route path="/Prof/Qcm/:idcour" element={<ProtectedRoute><QcmPage darkMode={darkMode} /></ProtectedRoute>} />
 
         <Route path="/logout" element={<Logout />} />
       </Routes>

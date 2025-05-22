@@ -1,69 +1,276 @@
-.course-details-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
+/* ✅ CourseDetails.css modifié avec thème vert */
+
+/* 🎨 Variables pour les thèmes clair/sombre */
+:root {
+  --light-bg: #f8f9fa;
+  --light-text: #212529;
+  --light-card: #ffffff;
+  --light-border: #e0f2f1;
+  --light-link: #2e7d32; /* 💚 Vert foncé Material Design */
+
+  --dark-bg: #1a1a1a;
+  --dark-text: #f8f9fa;
+  --dark-card: #2e2f2e;
+  --dark-border: #444;
+  --dark-link: #81c784; /* 💚 Vert clair dans le thème sombre */
 }
 
+/* 📱 Structure de base responsive */
+.course-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* 🌗 Thèmes clair/sombre */
+.light-mode {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* 📝 Typographie */
+.course-details-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--light-link);
+  border-bottom: 3px solid var(--light-link);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.course-details-container h2 {
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  color: var(--light-link);
+}
+
+.course-details-container h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  color: var(--light-link);
+}
+
+.course-details-container p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* 🔗 Liens */
+.course-details-container a {
+  color: var(--light-link);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dark-mode a {
+  color: var(--dark-link);
+}
+
+.course-details-container a:hover {
+  text-decoration: underline;
+}
+
+/* 📄 Cartes PDF */
 .pdf-card {
-  background: var(--card-bg, #f9f9f9);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: var(--light-card);
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  padding: 1.5rem;
   margin-bottom: 2rem;
-  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dark-mode .pdf-card {
+  background-color: var(--dark-card);
+  border-color: var(--dark-border);
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+}
+
+.pdf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
 }
 
 .pdf-frame-container {
   position: relative;
-  padding-bottom: 65%;
+  width: 100%;
   height: 0;
+  padding-bottom: 56.25%;
+  margin: 1rem 0;
   overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 1rem;
+  border-radius: 4px;
+  background-color: #e8f5e9;
+}
+
+.dark-mode .pdf-frame-container {
+  background-color: #333;
 }
 
 .pdf-frame {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
 
 .download-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #007bff;
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #c8e6c9;
+  color: #1b5e20;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .download-link:hover {
-  text-decoration: underline;
+  background-color: #a5d6a7;
 }
 
+.dark-mode .download-link {
+  background-color: #388e3c;
+  color: white;
+}
+
+/* 🖼️ Galerie d'images */
 .image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
 .image-item {
-  max-width: 300px;
+  background-color: var(--light-card);
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+  transition: transform 0.2s;
+}
+
+.dark-mode .image-item {
+  background-color: var(--dark-card);
+  border-color: var(--dark-border);
+}
+
+.image-item:hover {
+  transform: scale(1.02);
 }
 
 .image-item img {
   width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-item p {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #2e7d32;
+}
+
+.dark-mode .image-item p {
+  color: #a5d6a7;
+}
+
+/* 🎬 Vidéos */
+.video-item {
+  margin: 2rem 0;
+  background-color: var(--light-card);
+  border: 1px solid var(--light-border);
   border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dark-mode .pdf-card {
-  background: #1e1e1e;
-  color: #eee;
-  border: 1px solid #444;
+.dark-mode .video-item {
+  background-color: var(--dark-card);
+  border-color: var(--dark-border);
 }
 
-.light-mode .pdf-card {
-  background: #ffffff;
-  color: #000;
+.video-item video {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.video-item p {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #388e3c;
+}
+
+.dark-mode .video-item p {
+  color: #81c784;
+}
+
+/* 📝 Blocs de texte */
+.texte-block {
+  background-color: var(--light-card);
+  border-left: 5px solid var(--light-link);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .texte-block {
+  background-color: var(--dark-card);
+  border-left-color: var(--dark-link);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .course-details-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .course-details-container h1 {
+    font-size: 2rem;
+  }
+
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+.qcm-link-container {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 2px solid #4ade80;
+  background-color: #f0fff4;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.qcm-link {
+  font-weight: bold;
+  color: #16a34a;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.qcm-link:hover {
+  text-decoration: underline;
+  color: #15803d;
+}
+/* ✨ Animation de chargement */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
 }

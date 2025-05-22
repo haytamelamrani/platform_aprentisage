@@ -13,7 +13,7 @@ router.post(
   upload.fields([
     { name: 'pdfs', maxCount: 10 },
     { name: 'images', maxCount: 10 },
-    { name: 'video', maxCount: 1 }
+    { name: 'video', maxCount: 3 } // ← autoriser plusieurs vidéos si besoin
   ]),
   courseController.createCourse
 );
