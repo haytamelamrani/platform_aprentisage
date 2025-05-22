@@ -20,11 +20,12 @@ app.use(express.json());
 // 🔹 Servir les fichiers statiques (PDF, images, vidéos, etc.)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// 🔹 Routes API
+// ✅ Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/courses', require('./routes/course'));
 app.use('/api/qcm', require('./routes/qcm'));
+app.use('/api/assistant', require('./routes/assistant'));
 app.use('/api/admin', require('./routes/admin')); // Pour les statistiques et gestion admin
 
 // 🔹 Route d’accueil (optionnelle)
