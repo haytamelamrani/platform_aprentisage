@@ -18,17 +18,18 @@ app.use(cors());
 app.use(express.json());
 
 // 🔹 Servir les fichiers statiques (PDF, images, vidéos, etc.)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 
-// ✅ Routes
+
+// 🔹 Routes principales
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/courses', require('./routes/course'));
 app.use('/api/qcm', require('./routes/qcm'));
 app.use('/api/assistant', require('./routes/assistant'));
-app.use('/api/admin', require('./routes/admin')); // Pour les statistiques et gestion admin
+app.use('/api/admin', require('./routes/admin')); // ✅ Gestion admin
 
-// 🔹 Route d’accueil (optionnelle)
+// 🔹 Route d’accueil
 app.get('/', (req, res) => {
   res.send('Bienvenue sur la plateforme d’apprentissage !');
 });

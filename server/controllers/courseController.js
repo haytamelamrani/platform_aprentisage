@@ -12,7 +12,7 @@ exports.createCourse = async (req, res) => {
       pdfDescriptions,
       imageDescriptions,
       commentaireVideo,
-      textes // ✅ ici on récupère les textes
+      textes
     } = req.body;
 
     const parsedPdfDescriptions = pdfDescriptions ? JSON.parse(pdfDescriptions) : [];
@@ -38,7 +38,7 @@ exports.createCourse = async (req, res) => {
       titre,
       description,
       nomProf,
-      textes: parsedTextes, // ✅ ajout des textes
+      textes: parsedTextes,
       pdfs,
       images,
       video: videos
@@ -93,5 +93,47 @@ exports.searchCourseByTitle = async (req, res) => {
   } catch (err) {
     console.error('Erreur searchCourseByTitle :', err);
     res.status(500).json({ message: "Erreur lors de la recherche de cours." });
+  }
+};
+
+// 🧾 Obtenir un cours par ID
+exports.getCourseById = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    if (!course) {
+      return res.status(404).json({ message: "Cours non trouvé." });
+    }
+    res.status(200).json(course);
+  } catch (err) {
+    console.error('Erreur getCourseById :', err);
+    res.status(500).json({ message: "Erreur lors de la récupération du cours." });
+  }
+};
+
+// 📝 Modifier un cours
+exports.updateCourse = async (req, res) => {
+  try {
+    const updated = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) {
+      return res.status(404).json({ message: "Cours non trouvé." });
+    }
+    res.status(200).json(updated);
+  } catch (err) {
+    console.error('Erreur updateCourse :', err);
+    res.status(500).json({ message: "Erreur lors de la modification du cours." });
+  }
+};
+
+// 🗑️ Supprimer un cours
+exports.deleteCourse = async (req, res) => {
+  try {
+    const deleted = await Course.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Cours non trouvé." });
+    }
+    res.status(200).json({ message: "Cours supprimé avec succès." });
+  } catch (err) {
+    console.error('Erreur deleteCourse :', err);
+    res.status(500).json({ message: "Erreur lors de la suppression du cours." });
   }
 };
