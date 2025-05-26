@@ -15,4 +15,6 @@ router.post('/reset-password/:token', authController.resetPassword);
 // ✅ Vérification OTP
 router.post('/verify-otp', authController.verifyOtp);
 
+router.get('/:email', authController.getUserByEmail); // 📌 nouvelle route
+
 module.exports = router;

@@ -4,6 +4,12 @@ const courseSchema = new mongoose.Schema({
   titre: { type: String, required: true },
   description: String,
   nomProf: String,
+
+  textes: [
+    {
+      contenu: String
+    }
+  ],
   pdfs: [
     {
       filename: String,
@@ -22,16 +28,11 @@ const courseSchema = new mongoose.Schema({
       comment: String
     }
   ],
-  textes: [
-    {
-      contenu: String
-    }
-  ],
   ratings: [
     {
       userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User'
       },
       stars: {
         type: Number,

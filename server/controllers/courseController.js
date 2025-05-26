@@ -78,16 +78,24 @@ exports.getAllCourses = async (req, res) => {
 
 // 🔍 Rechercher un cours par titre
 exports.searchCourseByTitle = async (req, res) => {
-  const { titre } = req.query;
+  let titre = req.query.titre;
 
   if (!titre) {
     return res.status(400).json({ message: "Le paramètre 'titre' est requis." });
   }
 
+  titre = titre.trim();
+
+  // ⛑️ On échappe les caractères spéciaux pour éviter les erreurs RegExp
+  const escapedTitre = escapeRegex(titre);
+  const regex = new RegExp(`^${escapedTitre}$`, 'i');
+
   try {
-    const courses = await Course.find({
-      titre: { $regex: titre, $options: 'i' }
-    });
+    const courses = await Course.find({ titre: regex });
+
+    if (courses.length === 0) {
+      return res.status(404).json({ message: "Aucun cours trouvé avec ce titre." });
+    }
 
     res.status(200).json(courses);
   } catch (err) {
@@ -95,6 +103,11 @@ exports.searchCourseByTitle = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la recherche de cours." });
   }
 };
+
+// 🔧 Fonction utilitaire pour échapper les regex
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 // 🧾 Obtenir un cours par ID
 exports.getCourseById = async (req, res) => {

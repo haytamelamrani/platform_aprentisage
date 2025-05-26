@@ -1,276 +1,407 @@
-/* ✅ CourseDetails.css modifié avec thème vert */
-
-/* 🎨 Variables pour les thèmes clair/sombre */
-:root {
-  --light-bg: #f8f9fa;
-  --light-text: #212529;
-  --light-card: #ffffff;
-  --light-border: #e0f2f1;
-  --light-link: #2e7d32; /* 💚 Vert foncé Material Design */
-
-  --dark-bg: #1a1a1a;
-  --dark-text: #f8f9fa;
-  --dark-card: #2e2f2e;
-  --dark-border: #444;
-  --dark-link: #81c784; /* 💚 Vert clair dans le thème sombre */
-}
-
-/* 📱 Structure de base responsive */
+/* Base styles */
 .course-details-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  min-height: 100vh;
-  transition: all 0.3s ease;
+  padding: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* 🌗 Thèmes clair/sombre */
 .light-mode {
-  background-color: var(--light-bg);
-  color: var(--light-text);
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #f8f9fa;
+  --border-color: #e2e8f0;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --muted-color: #64748b;
+  --error-color: #ef4444;
+  --success-color: #10b981;
 }
 
 .dark-mode {
-  background-color: var(--dark-bg);
-  color: var(--dark-text);
+  --bg-color: #1a1a1a;
+  --text-color: #e5e5e5;
+  --card-bg: #2d2d2d;
+  --border-color: #3f3f46;
+  --accent-color: #3b82f6;
+  --accent-hover: #60a5fa;
+  --muted-color: #94a3b8;
+  --error-color: #f87171;
+  --success-color: #34d399;
 }
 
-/* 📝 Typographie */
-.course-details-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--light-link);
-  border-bottom: 3px solid var(--light-link);
-  padding-bottom: 0.5rem;
-  display: inline-block;
+.course-details-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.course-details-container h2 {
-  font-size: 1.8rem;
-  margin: 2rem 0 1rem;
-  color: var(--light-link);
+/* Header styles */
+.course-header {
+  margin-bottom: 2rem;
 }
 
-.course-details-container h3 {
-  font-size: 1.3rem;
-  margin: 1rem 0;
-  color: var(--light-link);
+.course-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
-.course-details-container p {
+.course-description {
+  font-size: 1.125rem;
+  color: var(--muted-color);
   line-height: 1.6;
-  margin-bottom: 1rem;
 }
 
-/* 🔗 Liens */
-.course-details-container a {
-  color: var(--light-link);
+/* Tabs */
+.course-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  gap: 0.5rem;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: var(--accent-color);
+}
+
+.tab-button.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* Content sections */
+.content-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.section-icon {
+  color: var(--accent-color);
+}
+
+.empty-message {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted-color);
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  border: 1px dashed var(--border-color);
+}
+
+/* Text content */
+.texte-block {
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  line-height: 1.6;
+}
+
+.texte-block p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.texte-block a {
+  color: var(--accent-color);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
-.dark-mode a {
-  color: var(--dark-link);
-}
-
-.course-details-container a:hover {
+.texte-block a:hover {
   text-decoration: underline;
 }
 
-/* 📄 Cartes PDF */
+/* PDF styles */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
 .pdf-card {
-  background-color: var(--light-card);
-  border: 1px solid var(--light-border);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--card-bg);
 }
 
-.dark-mode .pdf-card {
-  background-color: var(--dark-card);
-  border-color: var(--dark-border);
-  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+.pdf-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.pdf-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+.pdf-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .pdf-frame-container {
-  position: relative;
+  height: 400px;
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  margin: 1rem 0;
-  overflow: hidden;
-  border-radius: 4px;
-  background-color: #e8f5e9;
-}
-
-.dark-mode .pdf-frame-container {
-  background-color: #333;
 }
 
 .pdf-frame {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
 
 .download-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #c8e6c9;
-  color: #1b5e20;
-  border-radius: 6px;
+  padding: 0.75rem;
+  background-color: var(--card-bg);
+  color: var(--accent-color);
+  text-decoration: none;
   font-weight: 500;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
 }
 
 .download-link:hover {
-  background-color: #a5d6a7;
+  background-color: rgba(59, 130, 246, 0.1);
 }
 
-.dark-mode .download-link {
-  background-color: #388e3c;
-  color: white;
-}
-
-/* 🖼️ Galerie d'images */
+/* Image gallery */
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  margin: 2rem 0;
 }
 
 .image-item {
-  background-color: var(--light-card);
-  border: 1px solid var(--light-border);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
-  transition: transform 0.2s;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
 }
 
-.dark-mode .image-item {
-  background-color: var(--dark-card);
-  border-color: var(--dark-border);
+.image-container {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
-.image-item:hover {
-  transform: scale(1.02);
-}
-
-.image-item img {
+.image-container img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-item:hover .image-container img {
+  transform: scale(1.05);
+}
+
+.image-comment {
+  padding: 1rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted-color);
+}
+
+/* Video styles */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-item {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+}
+
+.video-container {
+  width: 100%;
+}
+
+.video-container video {
+  width: 100%;
   display: block;
 }
 
-.image-item p {
+.video-comment {
   padding: 1rem;
   margin: 0;
-  font-size: 0.9rem;
-  color: #2e7d32;
+  font-size: 0.875rem;
+  color: var(--muted-color);
 }
 
-.dark-mode .image-item p {
-  color: #a5d6a7;
+/* QCM section */
+.qcm-section {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* 🎬 Vidéos */
-.video-item {
-  margin: 2rem 0;
-  background-color: var(--light-card);
-  border: 1px solid var(--light-border);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.qcm-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-.dark-mode .video-item {
-  background-color: var(--dark-card);
-  border-color: var(--dark-border);
+.qcm-info {
+  flex: 1;
+  min-width: 250px;
 }
 
-.video-item video {
+.qcm-info h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.qcm-info p {
+  margin: 0;
+  color: var(--muted-color);
+}
+
+.qcm-icon {
+  color: var(--accent-color);
+}
+
+.qcm-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.qcm-button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Loading skeleton */
+.loading-skeleton {
   width: 100%;
-  border-radius: 4px;
 }
 
-.video-item p {
-  padding: 0.5rem 0;
-  font-size: 0.9rem;
-  color: #388e3c;
+.skeleton-title,
+.skeleton-description,
+.skeleton-section {
+  background: linear-gradient(90deg, var(--card-bg) 25%, var(--border-color) 50%, var(--card-bg) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 0.25rem;
 }
 
-.dark-mode .video-item p {
-  color: #81c784;
+.skeleton-title {
+  height: 2.5rem;
+  width: 60%;
+  margin-bottom: 1rem;
 }
 
-/* 📝 Blocs de texte */
-.texte-block {
-  background-color: var(--light-card);
-  border-left: 5px solid var(--light-link);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 0 4px 4px 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+.skeleton-description {
+  height: 1.25rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
-.dark-mode .texte-block {
-  background-color: var(--dark-card);
-  border-left-color: var(--dark-link);
+.skeleton-section {
+  height: 200px;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-/* 📱 Responsive */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Error container */
+.error-container {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--card-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.error-icon {
+  color: var(--error-color);
+  margin-bottom: 1rem;
+}
+
+.error-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-container p {
+  color: var(--muted-color);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .course-details-container {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
   }
 
-  .course-details-container h1 {
-    font-size: 2rem;
+  .course-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .pdf-grid,
+  .video-grid {
+    grid-template-columns: 1fr;
   }
 
   .image-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-}
-.qcm-link-container {
-  margin-top: 30px;
-  padding: 20px;
-  border-top: 2px solid #4ade80;
-  background-color: #f0fff4;
-  border-radius: 8px;
-  text-align: center;
-}
 
-.qcm-link {
-  font-weight: bold;
-  color: #16a34a;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
+  .qcm-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.qcm-link:hover {
-  text-decoration: underline;
-  color: #15803d;
-}
-/* ✨ Animation de chargement */
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-.loading {
-  animation: pulse 1.5s ease-in-out infinite;
+  .qcm-button {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import menuIcon from '../assets/menu.png';
 
-const NavbarProf = ({ darkMode, toggleMode }) => {
+const NavbarEtudiant = ({ darkMode, toggleMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Link to="/Prof" className="logo">SmartLearn</Link>
+      <Link to="/" className="logo">SmartLearn</Link>
 
       <img
         src={menuIcon}
@@ -34,10 +34,9 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
       />
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-        <li><Link to="/Prof/cours">Cours</Link></li>
-        <li><Link to="/Prof/addcours">Gestion Cour</Link></li>
-        <li><Link to="/Prof/addqcm">Gestion Quiz</Link></li>
-        <li><Link to="/Prof/notes">Notes etudiant</Link></li>
+        <li><Link to="/courses">Cours</Link></li>
+        <li><Link to="#">jeux</Link></li>
+        <li><Link to="/etudiant/notes">historique</Link></li>
 
         {!isLoggedIn && (
           <>
@@ -64,4 +63,4 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
   );
 };
 
-export default NavbarProf;
+export default NavbarEtudiant;

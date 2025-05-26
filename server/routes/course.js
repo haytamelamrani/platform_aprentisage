@@ -18,31 +18,19 @@ router.post(
   courseController.createCourse
 );
 
-// 📚 Obtenir tous les cours
+// 📚 Récupérer tous les cours
 router.get('/all', courseController.getAllCourses);
 
-// 🔍 Chercher un cours par titre
+// 🔍 Rechercher un cours par titre (via query param ?titre=...)
 router.get('/search', courseController.searchCourseByTitle);
 
-// 🧾 Obtenir un cours par ID (pour modification)
-if (typeof courseController.getCourseById === 'function') {
-  router.get('/:id', courseController.getCourseById);
-} else {
-  console.warn("⚠️ courseController.getCourseById non défini");
-}
+// 🧾 Obtenir un cours par ID
+router.get('/:id', courseController.getCourseById);
 
 // 📝 Modifier un cours
-if (typeof courseController.updateCourse === 'function') {
-  router.put('/:id', courseController.updateCourse);
-} else {
-  console.warn("⚠️ courseController.updateCourse non défini");
-}
+router.put('/:id', courseController.updateCourse);
 
 // 🗑️ Supprimer un cours
-if (typeof courseController.deleteCourse === 'function') {
-  router.delete('/:id', courseController.deleteCourse);
-} else {
-  console.warn("⚠️ courseController.deleteCourse non défini");
-}
+router.delete('/:id', courseController.deleteCourse);
 
 module.exports = router;
