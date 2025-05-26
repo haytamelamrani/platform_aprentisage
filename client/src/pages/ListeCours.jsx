@@ -4,48 +4,75 @@ import '../styles/ListeCours.css';
 
 const ListeCours = () => {
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchCourses = async () => {
-    const res = await axios.get('http://localhost:5000/api/admin/courses');
-    setCourses(res.data);
+    try {
+      const res = await axios.get('http://localhost:5000/api/admin/courses');
+      setCourses(res.data);
+    } catch (error) {
+      console.error("❌ Erreur chargement cours :", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const deleteCourse = async (id) => {
-    await axios.delete(`http://localhost:5000/api/admin/courses/${id}`);
-    fetchCourses();
+    const confirmDelete = window.confirm("Voulez-vous vraiment supprimer ce cours ?");
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/api/admin/courses/${id}`);
+      fetchCourses();
+    } catch (error) {
+      console.error("❌ Erreur suppression cours :", error);
+    }
   };
 
-  useEffect(() => { fetchCourses(); }, []);
+  useEffect(() => {
+    fetchCourses();
+  }, []);
 
   return (
     <div className="cours-container">
       <h2>📚 Liste des Cours</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Titre</th>
-            <th>Professeur</th>
-            <th>Ajouté le</th>
-            <th>Fichiers</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map((c) => (
-            <tr key={c._id}>
-              <td>{c.titre}</td>
-              <td>{c.nomProf}</td>
-              <td>{new Date(c.createdAt).toLocaleDateString()}</td>
-              <td>
-                {c.fichiers.pdfs.length} PDF / {c.fichiers.images.length} Img / {c.fichiers.videos.length} Vid
-              </td>
-              <td>
-                <button onClick={() => deleteCourse(c._id)}>🗑️ Supprimer</button>
-              </td>
+
+      {loading ? (
+        <p>Chargement...</p>
+      ) : courses.length === 0 ? (
+        <p>Aucun cours trouvé.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Professeur</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {courses.map(course => (
+              <tr key={course._id}>
+                <td>{course.titre}</td>
+                <td>{course.nomProf}</td>
+                <td>{course.description}</td>
+                <td>{new Date(course.createdAt).toLocaleDateString()}</td>
+              
+                <td>
+  <button className="edit-btn" onClick={() => window.location.href = `/admin/cours/modifier/${course._id}`}>
+    ✏️ Modifier
+  </button>
+  <button className="delete-btn" onClick={() => deleteCourse(course._id)}>
+    🗑️ Supprimer
+  </button>
+</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

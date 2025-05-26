@@ -1,43 +1,72 @@
-.admin-dashboard {
-    padding: 2rem;
-    color: #f4f4f4;
-    background-color: #1e1e2f;
-    min-height: 100vh;
+.dashboard {
+  padding: 2rem;
+  background-color: #121226;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #58ffb4;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  background-color: #1e1e3a;
+  padding: 1.2rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.stat:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+button {
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  h2 {
-    margin-bottom: 2rem;
-    font-size: 24px;
+
+  .buttons {
+    flex-direction: column;
   }
-  
-  .stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .stat-box {
-    background: #2d2d44;
-    padding: 1rem;
-    border-radius: 12px;
-    font-size: 18px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    text-align: center;
-  }
-  
-  .quick-actions button {
-    margin-right: 1rem;
-    padding: 0.8rem 1.5rem;
-    background: #4e54c8;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .quick-actions button:hover {
-    background: #6c70f3;
-  }
-  
+}

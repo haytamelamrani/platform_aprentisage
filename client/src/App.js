@@ -18,6 +18,8 @@ import OtpVerificationPage from './pages/OtpVerificationPage';
 import StudentDashboard from './pages/StudentDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import ListeCours from './pages/ListeCours'; // ✅ Import cours
+import ListeUtilisateurs from './pages/ListeUtilisateurs'; // ✅ Import utilisateurs
 import Logout from './pages/Logout';
 import AddCoursePage from './pages/AddCoursePage';
 import AddQCMPage from './pages/AddQcmPage';
@@ -25,6 +27,7 @@ import CoursesPage from './pages/Courses';
 import CourseDetailsPage from './pages/CourseDetails';
 import QcmPage from './pages/QcmPage';
 import HtmlRunner from './pages/Game';
+import ModifierCours from './pages/ModifierCours';
 
 import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
@@ -32,7 +35,6 @@ import Chatbot from './components/Chatbot';
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
   const currentPath = location.pathname;
-
 
   return (
     <>
@@ -59,13 +61,17 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
         <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
+        {/* ✅ Routes pour la gestion admin */}
+        <Route path="/admin/cours" element={<ProtectedRoute><ListeCours /></ProtectedRoute>} />
+        <Route path="/admin/utilisateurs" element={<ProtectedRoute><ListeUtilisateurs /></ProtectedRoute>} />
+
         <Route path="/Prof" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />
         <Route path="/Prof/addcours" element={<ProtectedRoute><AddCoursePage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
         <Route path="/Prof/addqcm" element={<ProtectedRoute><AddQCMPage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />
         <Route path="/Prof/cours" element={<ProtectedRoute><CoursesPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/Qcm/:idcour" element={<ProtectedRoute><QcmPage darkMode={darkMode} /></ProtectedRoute>} />
-
+        <Route path="/admin/cours/modifier/:id" element={<ModifierCours />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
 
