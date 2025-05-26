@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // 🔹 Servir les fichiers statiques (PDF, images, vidéos, etc.)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 
 // ✅ Importer et utiliser les routes
 app.use('/api/auth', require('./routes/auth'));
@@ -26,8 +26,7 @@ app.use('/api/users', require('./routes/user'));
 app.use('/api/courses', require('./routes/course'));
 app.use('/api/qcm', require('./routes/qcm'));
 app.use('/api/assistant', require('./routes/assistant'));
-app.use('/api/admin', require('./routes/admin'));
-
+app.use('/api/admin', require('./routes/admin')); // ✅ Gestion admin
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
 // 🔹 Route d’accueil

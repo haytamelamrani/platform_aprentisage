@@ -1,11 +1,11 @@
 const express = require('express');
-const courseController = require('../controllers/courseController'); // ✅ import complet
+const courseController = require('../controllers/courseController');
 const { upload } = require('../middleware/upload');
 const { authMiddleware, isProfesseur } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-// 🔐 Route pour ajouter un cours (professeur seulement)
+// 🔐 Ajouter un cours (professeur connecté)
 router.post(
   '/add',
   authMiddleware,
@@ -24,7 +24,13 @@ router.get('/all', courseController.getAllCourses);
 // 🔍 Rechercher un cours par titre (via query param ?titre=...)
 router.get('/search', courseController.searchCourseByTitle);
 
-// 🆕 ✅ Récupérer un cours par son ID
+// 🧾 Obtenir un cours par ID
 router.get('/:id', courseController.getCourseById);
+
+// 📝 Modifier un cours
+router.put('/:id', courseController.updateCourse);
+
+// 🗑️ Supprimer un cours
+router.delete('/:id', courseController.deleteCourse);
 
 module.exports = router;

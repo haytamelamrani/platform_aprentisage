@@ -1,37 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/AdminDashboard.css';
 import axios from 'axios';
+import '../styles/AdminDashboard.css';
 
 const AdminDashboard = () => {
   const userName = localStorage.getItem('userName');
-  const [stats, setStats] = useState({
-    students: 0,
-    teachers: 0,
-    courses: 0,
-    messages: 0,
-  });
+
+  const [etudiantsCount, setEtudiantsCount] = useState(0);
+  const [professeursCount, setProfesseursCount] = useState(0);
+  const [coursCount, setCoursCount] = useState(0);
+  const [messagesCount, setMessagesCount] = useState(0); // à connecter si tu as un système de messages
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/stats')
-      .then(res => setStats(res.data))
-      .catch(err => console.error(err));
+    // 🔹 Récupérer les utilisateurs
+    axios.get('http://localhost:5000/api/admin/users')
+      .then(res => {
+        const users = res.data;
+        setEtudiantsCount(users.filter(u => u.role === 'etudiant').length);
+        setProfesseursCount(users.filter(u => u.role === 'professeur').length);
+      })
+      .catch(err => console.error('Erreur chargement utilisateurs :', err));
+
+    // 🔹 Récupérer les cours
+    axios.get('http://localhost:5000/api/admin/courses')
+      .then(res => {
+        setCoursCount(res.data.length);
+      })
+      .catch(err => console.error('Erreur chargement cours :', err));
+
+    // 🔹 Récupérer les messages (optionnel)
+    // axios.get('http://localhost:5000/api/messages')
+    //   .then(res => setMessagesCount(res.data.length))
+    //   .catch(err => console.error('Erreur chargement messages :', err));
   }, []);
 
   return (
-    <div className="admin-dashboard">
+    <div className="dashboard">
       <h2>Bienvenue administrateur 🛡️ {userName}</h2>
-      <div className="stats-container">
-        <div className="stat-box">👨‍🎓 Étudiants: {stats.students}</div>
-        <div className="stat-box">👨‍🏫 Professeurs: {stats.teachers}</div>
-        <div className="stat-box">📚 Cours: {stats.courses}</div>
-        <div className="stat-box">💬 Messages: {stats.messages}</div>
+
+      <div className="stats">
+        <div className="stat">🧑‍🎓 Étudiants: {etudiantsCount}</div>
+        <div className="stat">👨‍🏫 Professeurs: {professeursCount}</div>
+        <div className="stat">📚 Cours: {coursCount}</div>
+        <div className="stat">💬 Messages: {messagesCount}</div>
       </div>
 
-      <div className="quick-actions">
-        <button onClick={() => window.location.href = '/admin/courses'}>📂 Gérer les cours</button>
-        <button onClick={() => window.location.href = '/admin/users'}>👥 Gérer les utilisateurs</button>
-        <button onClick={() => window.location.href = '/admin/messages'}>✉️ Voir les messages</button>
-        <button onClick={() => window.location.href = '/logout'}>🚪 Déconnexion</button>
+      <div className="buttons">
+        <button onClick={() => window.location.href = "/admin/cours"}>📁 Gérer les cours</button>
+        <button onClick={() => window.location.href = "/admin/utilisateurs"}>👥 Gérer les utilisateurs</button>
+        <button onClick={() => window.location.href = "/admin/messages"}>📨 Voir les messages</button>
+        <button onClick={() => window.location.href = "/logout"}>🚪 Déconnexion</button>
       </div>
     </div>
   );

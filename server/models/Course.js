@@ -7,29 +7,45 @@ const courseSchema = new mongoose.Schema({
 
   textes: [
     {
-      contenu: { type: String }
+      contenu: String
     }
   ],
   pdfs: [
     {
-      filename: { type: String },
-      description: { type: String }
+      filename: String,
+      description: String
     }
   ],
   images: [
     {
-      filename: { type: String },
-      comment: { type: String }
+      filename: String,
+      comment: String
     }
   ],
   video: [
     {
-      filename: { type: String },
-      comment: { type: String }
+      filename: String,
+      comment: String
     }
   ],
-
-  createdAt: { type: Date, default: Date.now }
+  ratings: [
+    {
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      stars: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+      }
+    }
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('Course', courseSchema);
