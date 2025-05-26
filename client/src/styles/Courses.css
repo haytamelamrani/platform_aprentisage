@@ -1,96 +1,347 @@
+/* 🌟 Variables globales pour cohérence */
+:root {
+  --green-glow: #4ade80;
+  --green-dark: #22c55e;
+  --green-deep: #14532d;
+  --bg-dark: #0f0f0f;
+  --bg-card: #111111;
+  --text-light: #ffffff;
+  --text-secondary: #e0e0e0;
+  --card-radius: 14px;
+  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 🌐 Styles de base et reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* 📱 Container principal avec meilleur espacement */
 .courses-container {
   min-height: 100vh;
-  padding: 2rem;
-  background-color: #0f0f0f;
-  color: white;
+  padding: 3rem 2rem;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 20%);
+  color: var(--text-light);
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* 🏆 Titre principal avec animation subtile */
 .courses-container h1 {
-  font-size: 2.5rem;
-  color: #4ade80;
-  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--green-glow);
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+  letter-spacing: -0.5px;
 }
 
-/* 🔍 Barre de recherche */
+.courses-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--green-glow), transparent);
+  border-radius: 2px;
+}
+
+/* 🔍 Barre de recherche améliorée avec icône */
 .search-input {
   display: block;
-  margin: 0 auto 2rem auto;
-  padding: 0.7rem 1rem;
-  width: 60%;
-  max-width: 300px;
-  border-radius: 8px;
-  border: 1px solid #4ade80;
-  background-color: #1a1a1a;
-  color: white;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  margin: 0 auto 3rem auto;
+  padding: 0.9rem 1.2rem 0.9rem 3rem; /* Espace pour l'icône */
+  width: 70%;
+  max-width: 400px;
+  border-radius: 12px;
+  border: 2px solid rgba(74, 222, 128, 0.3);
+  background-color: rgba(26, 26, 26, 0.8);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%234ade80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 20px;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
 
 .search-input:focus {
-  border-color: #22c55e;
+  border-color: var(--green-dark);
   outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2), 0 4px 12px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
 }
 
-/* 🟩 Grille : 2 colonnes fixes */
+.search-input::placeholder {
+  color: rgba(224, 224, 224, 0.6);
+}
+
+/* 🟩 Grille responsive avec animation d'apparition */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  max-width: 800px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
   margin: auto;
 }
 
-/* 🟢 Carte cours avec effet 3D vert */
+/* Message quand aucun cours n'est trouvé */
+.courses-container > p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: rgba(20, 83, 45, 0.2);
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔄 Conteneur pour les liens de cours */
+.courses-container a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: var(--transition-smooth);
+}
+
+/* 🟢 Carte cours avec effet 3D vert amélioré */
 .course-box {
-  background: #111;
-  padding: 1.2rem;
-  border-radius: 14px;
+  background: var(--bg-card);
+  padding: 1.8rem;
+  border-radius: var(--card-radius);
   box-shadow:
-    0 0 1px #14532d,
+    0 0 1px var(--green-deep),
     0 6px 14px rgba(16, 185, 129, 0.15),
     0 15px 30px rgba(34, 197, 94, 0.08),
     inset 0 0 8px rgba(0, 255, 153, 0.05);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: var(--transition-smooth);
   text-align: left;
-  text-decoration: none;
-  color: white;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-deep), var(--green-glow));
+  opacity: 0.7;
+  transition: var(--transition-smooth);
 }
 
 .course-box:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow:
-    0 0 3px #22c55e,
+    0 0 3px var(--green-dark),
     0 10px 25px rgba(34, 197, 94, 0.3),
     0 20px 45px rgba(34, 197, 94, 0.1),
     inset 0 0 15px rgba(0, 255, 153, 0.15);
 }
 
-/* 📚 Titres et texte plus grands */
+.course-box:hover::before {
+  height: 6px;
+  opacity: 1;
+}
+
+/* 📚 Titres et texte avec meilleure typographie */
 .course-box h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.6rem;
-  color: #4ade80;
-  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--green-glow);
+  font-weight: 700;
+  line-height: 1.3;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.course-box h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--green-dark);
+  border-radius: 1.5px;
+  transition: width 0.3s ease;
+}
+.courses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.progress-badge {
+  position: relative;
+  height: 36px;
+  min-width: 180px;
+  padding: 0 1rem;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--green-dark);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.2);
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-glow), var(--green-dark));
+  z-index: 0;
+  transition: var(--transition-smooth);
+  border-radius: 20px;
+}
+
+.light-mode .progress-badge span {
+  position: relative;
+  z-index: 1;
+  color: black;
+}
+.progress-badge span {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+.course-box:hover h2::after {
+  width: 60px;
 }
 
 .course-box p {
   font-size: 1.05rem;
-  color: #e0e0e0;
-  line-height: 1.6;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-top: 0.5rem;
 }
 
-/* 📱 Responsive : 1 colonne sur petit écran */
-@media (max-width: 700px) {
+/* ✨ État de chargement */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
+}
+
+.loading .course-box {
+  animation: pulse 1.5s infinite;
+}
+
+/* 🌓 Support du mode clair/sombre */
+.light-mode {
+  --bg-dark: #f5f5f5;
+  --bg-card: #ffffff;
+  --text-light: #111111;
+  --text-secondary: #333333;
+}
+
+.light-mode .course-box {
+  box-shadow:
+    0 0 1px var(--green-deep),
+    0 6px 14px rgba(16, 185, 129, 0.1),
+    0 15px 30px rgba(34, 197, 94, 0.05);
+}
+
+.light-mode .search-input {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+/* 📱 Responsive amélioré */
+@media (max-width: 900px) {
+  .courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .courses-container h1 {
+    font-size: 2.2rem;
+  }
+  
+  .search-input {
+    width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .courses-container {
+    padding: 2rem 1.2rem;
+  }
+  
   .courses-grid {
     grid-template-columns: 1fr;
   }
-
-  .course-box h2 {
-    font-size: 1.2rem;
+  
+  .course-box {
+    padding: 1.5rem;
   }
-
-  .course-box p {
-    font-size: 1rem;
+  
+  .course-box h2 {
+    font-size: 1.3rem;
+  }
+  
+  .search-input {
+    width: 100%;
+    max-width: none;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    background-size: 18px;
+    background-position: 10px center;
   }
 }
+
+/* 🎬 Animation d'entrée pour les cartes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.course-box {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Délai d'animation pour créer un effet en cascade */
+.courses-grid a:nth-child(1) .course-box { animation-delay: 0.1s; }
+.courses-grid a:nth-child(2) .course-box { animation-delay: 0.2s; }
+.courses-grid a:nth-child(3) .course-box { animation-delay: 0.3s; }
+.courses-grid a:nth-child(4) .course-box { animation-delay: 0.4s; }
+.courses-grid a:nth-child(5) .course-box { animation-delay: 0.5s; }
+.courses-grid a:nth-child(6) .course-box { animation-delay: 0.6s; }

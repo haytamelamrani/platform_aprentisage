@@ -167,3 +167,18 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
+// 🔍 Obtenir un utilisateur par email
+exports.getUserByEmail = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "Utilisateur non trouvé." });
+
+    // Tu peux retourner plus ou moins d'infos selon ce que tu veux exposer
+    res.json({ nom: user.nom, email: user.email, role: user.role });
+  } catch (err) {
+    console.error("Erreur getUserByEmail:", err);
+    res.status(500).json({ message: "Erreur serveur." });
+  }
+};

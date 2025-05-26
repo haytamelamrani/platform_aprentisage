@@ -13,15 +13,18 @@ router.post(
   upload.fields([
     { name: 'pdfs', maxCount: 10 },
     { name: 'images', maxCount: 10 },
-    { name: 'video', maxCount: 3 } // ← autoriser plusieurs vidéos si besoin
+    { name: 'video', maxCount: 3 }
   ]),
   courseController.createCourse
 );
 
-// 📚 Route pour récupérer tous les cours
+// 📚 Récupérer tous les cours
 router.get('/all', courseController.getAllCourses);
 
-// 🔍 Route pour chercher un cours par titre
+// 🔍 Rechercher un cours par titre (via query param ?titre=...)
 router.get('/search', courseController.searchCourseByTitle);
+
+// 🆕 ✅ Récupérer un cours par son ID
+router.get('/:id', courseController.getCourseById);
 
 module.exports = router;

@@ -26,6 +26,7 @@ const LoginPage = ({ darkMode }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('userRole', user.role);
       localStorage.setItem('userName', user.nom);
+      localStorage.setItem('email', email);
 
       setMsg('✅ Connexion réussie');
 

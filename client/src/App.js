@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 
 import Navbar from './components/Navbar';
 import NavbarProf from './components/NavbarProf';
+import NavbarEtudiant from './components/NavbarEtudiant';
+
 import ProtectedRoute from './components/ProtectedRoute';
 
 import HomePage from './pages/HomePage';
@@ -25,22 +27,28 @@ import CoursesPage from './pages/Courses';
 import CourseDetailsPage from './pages/CourseDetails';
 import QcmPage from './pages/QcmPage';
 import HtmlRunner from './pages/Game';
+import ProgressPage from './pages/ProgressPage';
+import ProfProgressPage from './pages/ProfProgressPage';
 
 import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
 
+
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const role = localStorage.getItem('userRole');
 
   return (
     <>
-      {currentPath.startsWith('/Prof') ? (
+      {role === "professeur"  ? (
         <NavbarProf darkMode={darkMode} toggleMode={toggleMode} />
+      ) : role === "etudiant"  ? (
+        <NavbarEtudiant darkMode={darkMode} toggleMode={toggleMode} />
       ) : (
         <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       )}
+
 
       <Routes>
         <Route path="/" element={<HomePage darkMode={darkMode} toggleMode={toggleMode} />} />
@@ -65,6 +73,9 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/Prof/cours" element={<ProtectedRoute><CoursesPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/Qcm/:idcour" element={<ProtectedRoute><QcmPage darkMode={darkMode} /></ProtectedRoute>} />
+        <Route path="/Prof/notes" element={<ProtectedRoute><ProfProgressPage darkMode={darkMode} /></ProtectedRoute>} />
+
+        <Route path="/etudiant/notes" element={<ProtectedRoute><ProgressPage darkMode={darkMode} /></ProtectedRoute>} />
 
         <Route path="/logout" element={<Logout />} />
       </Routes>
