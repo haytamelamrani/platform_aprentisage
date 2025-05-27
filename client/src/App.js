@@ -30,6 +30,13 @@ import HtmlRunner from './pages/Game';
 import ProgressPage from './pages/ProgressPage';
 import ProfProgressPage from './pages/ProfProgressPage';
 
+
+import ListeCours from './pages/ListeCours';
+import ListeUtilisateurs from './pages/ListeUtilisateurs';
+
+import ModifierCours from './pages/ModifierCours';
+
+
 import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
 
@@ -74,6 +81,13 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/Qcm/:idcour" element={<ProtectedRoute><QcmPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/notes" element={<ProtectedRoute><ProfProgressPage darkMode={darkMode} /></ProtectedRoute>} />
+
+        <Route path="/admin/cours" element={<ProtectedRoute><ListeCours /></ProtectedRoute>} />
+        <Route path="/admin/utilisateurs" element={<ProtectedRoute><ListeUtilisateurs /></ProtectedRoute>} />
+
+        <Route path="/admin/cours/modifier/:id" element={<ProtectedRoute><ModifierCours /></ProtectedRoute>} />
+
+
 
         <Route path="/etudiant/notes" element={<ProtectedRoute><ProgressPage darkMode={darkMode} /></ProtectedRoute>} />
 

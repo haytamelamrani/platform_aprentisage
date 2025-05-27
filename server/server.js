@@ -30,6 +30,7 @@ app.use('/api/admin', require('./routes/admin'));
 
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
+app.use(express.urlencoded({ extended: true }));
 // 🔹 Route d’accueil
 app.get('/', (req, res) => {
   res.send('🎓 Bienvenue sur la plateforme d’apprentissage !');

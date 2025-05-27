@@ -1,53 +1,65 @@
 .modifier-cours-container {
-    padding: 2rem;
-    max-width: 600px;
-    margin: auto;
-    background-color: #1e1e2f;
-    border-radius: 12px;
-    color: #f0f0f0;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-  }
-  
-  .modifier-cours-container h2 {
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #5eead4;
-  }
-  
-  .modifier-cours-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .modifier-cours-form label {
-    margin-bottom: 0.4rem;
-    font-weight: bold;
-    color: #94a3b8;
-  }
-  
-  .modifier-cours-form input,
-  .modifier-cours-form textarea {
-    margin-bottom: 1.5rem;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #2d2d44;
-    color: white;
-    font-size: 1rem;
-  }
-  
-  .modifier-cours-form button {
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .modifier-cours-form button:hover {
-    background-color: #2563eb;
-  }
-  
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.modifier-cours-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #00bfff;
+}
+
+.modifier-cours-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modifier-cours-form label {
+  font-weight: bold;
+}
+
+.modifier-cours-form input,
+.modifier-cours-form textarea {
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: white;
+  resize: vertical;
+}
+
+.modifier-cours-form h3 {
+  margin-top: 20px;
+  color: #f39c12;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+}
+
+.modifier-cours-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modifier-cours-form button {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  background-color: #00b894;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modifier-cours-form button:hover {
+  background-color: #019875;
+}
