@@ -376,6 +376,48 @@
   color: var(--muted-color);
 }
 
+/* Ask question section */
+.ask-question-section {
+  background-color: var(--card-bg);
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.ask-question-section h2 {
+  margin-bottom: 10px;
+}
+
+.ask-question-section textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 15px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.ask-question-section button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+  float: right;
+}
+
+
+.ask-question-section button:hover {
+  background-color: var(--accent-hover);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .course-details-container {
@@ -401,6 +443,11 @@
   }
 
   .qcm-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ask-question-section button {
     width: 100%;
     text-align: center;
   }

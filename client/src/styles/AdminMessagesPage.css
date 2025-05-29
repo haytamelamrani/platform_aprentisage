@@ -1,0 +1,40 @@
+.admin-messages-page {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .dark-mode {
+    background-color: #1e293b;
+    color: #f8fafc;
+  }
+  .light-mode {
+    background-color: white;
+    color: black;
+  }
+  .messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  .messages-table th, .messages-table td {
+    border: 1px solid #cbd5e1;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .dark-mode .messages-table th,
+  .dark-mode .messages-table td {
+    border-color: #475569;
+  }
+  
+  .delete-btn {
+    background-color: #ef4444;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

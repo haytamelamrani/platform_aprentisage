@@ -8,7 +8,7 @@ exports.createCourse = async (req, res) => {
     const {
       titre,
       description,
-      nomProf,
+      emailProf,
       pdfDescriptions,
       imageDescriptions,
       commentaireVideo,
@@ -37,7 +37,7 @@ exports.createCourse = async (req, res) => {
     const newCourse = new Course({
       titre,
       description,
-      nomProf,
+      emailProf,
       textes: parsedTextes, // ✅ ajout des textes
       pdfs,
       images,
@@ -120,5 +120,69 @@ exports.getCourseById = async (req, res) => {
   } catch (error) {
     console.error("Erreur getCourseById:", error);
     res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+// ✏️ Modifier un cours existant
+exports.updateCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+
+    const {
+      titre,
+      description,
+      emailProf,
+      pdfDescriptions,
+      imageDescriptions,
+      commentaireVideo,
+      textes
+    } = req.body;
+
+    const parsedPdfDescriptions = pdfDescriptions ? JSON.parse(pdfDescriptions) : [];
+    const parsedImageDescriptions = imageDescriptions ? JSON.parse(imageDescriptions) : [];
+    const parsedTextes = textes ? JSON.parse(textes) : [];
+
+    const updatedFields = {
+      titre,
+      description,
+      emailProf,
+      textes: parsedTextes,
+    };
+
+    // 🔄 Gestion des fichiers (si de nouveaux fichiers sont envoyés)
+    if (req.files) {
+      if (req.files['pdfs']) {
+        updatedFields.pdfs = req.files['pdfs'].map((file, i) => ({
+          filename: file.filename,
+          description: parsedPdfDescriptions[i] || ''
+        }));
+      }
+
+      if (req.files['images']) {
+        updatedFields.images = req.files['images'].map((file, i) => ({
+          filename: file.filename,
+          comment: parsedImageDescriptions[i] || ''
+        }));
+      }
+
+      if (req.files['video']) {
+        updatedFields.video = req.files['video'].map(file => ({
+          filename: file.filename,
+          comment: commentaireVideo || ''
+        }));
+      }
+    }
+
+    const updatedCourse = await Course.findByIdAndUpdate(courseId, updatedFields, { new: true });
+
+    if (!updatedCourse) {
+      return res.status(404).json({ message: "Cours non trouvé pour mise à jour." });
+    }
+
+    res.status(200).json({ message: "Cours mis à jour avec succès.", course: updatedCourse });
+
+  } catch (error) {
+    console.error("Erreur updateCourse :", error);
+    res.status(500).json({ message: "Erreur lors de la mise à jour du cours." });
   }
 };

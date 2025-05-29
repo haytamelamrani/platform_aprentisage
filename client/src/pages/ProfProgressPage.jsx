@@ -5,19 +5,19 @@ import '../styles/ProfProgressPage.css';
 const ProfProgressPage = ({ darkMode }) => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [profName, setProfName] = useState('');
+  const [profName, setProfEmail] = useState('');
 
   useEffect(() => {
-    const nom = localStorage.getItem('userName');
-    setProfName(nom);
+    const email = localStorage.getItem('email');
+    setProfEmail(email);
 
-    if (!nom) return;
+    if (!email) return;
 
     const fetchData = async () => {
       try {
         const coursesRes = await axios.get('http://localhost:5000/api/courses/all');
         const myCourses = coursesRes.data
-          .filter(c => c.nomProf === nom)
+          .filter(c => c.emailProf === email)
           .map(c => c.titre.trim());
 
         const progressRes = await axios.get('http://localhost:5000/api/progress');

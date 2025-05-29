@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const courseSchema = new mongoose.Schema({
   titre: { type: String, required: true },
   description: String,
-  nomProf: String,
+  emailProf: String,
 
   textes: [
     {

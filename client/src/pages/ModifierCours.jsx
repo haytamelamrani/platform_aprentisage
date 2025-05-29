@@ -86,8 +86,7 @@ const ModifierCours = () => {
 
       setCourse(prev => ({
         ...prev,
-        [type === 'pdfs' ? 'pdfs' : type === 'images' ? 'images' : 'video']:
-          [...prev[type === 'pdfs' ? 'pdfs' : type === 'images' ? 'images' : 'video'], res.data]
+        [type]: [...prev[type], res.data]
       }));
     } catch (err) {
       console.error(`Erreur upload ${type}:`, err);
@@ -98,9 +97,16 @@ const ModifierCours = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/courses/${id}`, course, {
+
+      const updatedData = {
+        ...course,
+        textes: course.textes.map(t => t.contenu), // uniquement le texte brut
+      };
+
+      await axios.put(`http://localhost:5000/api/courses/${id}`, updatedData, {
         headers: { Authorization: `Bearer ${token}` }
       });
+
       alert("✅ Cours mis à jour !");
       navigate('/admin/cours');
     } catch (error) {

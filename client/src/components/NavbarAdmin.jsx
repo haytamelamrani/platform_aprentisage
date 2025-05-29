@@ -24,7 +24,7 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Link to="student-dashboard" className="logo">SmartLearn</Link>
+      <Link to="/admin-dashboard" className="logo">SmartLearn</Link>
 
       <img
         src={menuIcon}
@@ -34,9 +34,9 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
       />
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-        <li><Link to="/courses">Cours</Link></li>
-        <li><Link to="#">jeux</Link></li>
-        <li><Link to="/etudiant/notes">historique</Link></li>
+        <li><Link to="/admin/cours">Gérer les cours</Link></li>
+        <li><Link to="/admin/utilisateurs">Gérer les utilisateurs</Link></li>
+        <li><Link to="/admin/messages">Gérer les messages</Link></li>
 
         {!isLoggedIn && (
           <>
