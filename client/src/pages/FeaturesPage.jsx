@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/FeaturesPage.css';
 
-const FeaturesPage = ({ darkMode, toggleMode }) => {
+const FeaturesPage = ({ darkMode }) => {
   return (
     <div className={`features-page ${darkMode ? 'dark-mode' : ''}`}>
 

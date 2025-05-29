@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import NavbarProf from './components/NavbarProf';
 import NavbarEtudiant from './components/NavbarEtudiant';
+import NavbarAdmin from './components/NavbarAdmin'
 
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -35,7 +36,7 @@ import ListeCours from './pages/ListeCours';
 import ListeUtilisateurs from './pages/ListeUtilisateurs';
 
 import ModifierCours from './pages/ModifierCours';
-
+import AdminMessagesPage from './pages/AdminMessagePage';
 
 import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
@@ -52,7 +53,9 @@ function AppContent({ darkMode, toggleMode }) {
         <NavbarProf darkMode={darkMode} toggleMode={toggleMode} />
       ) : role === "etudiant"  ? (
         <NavbarEtudiant darkMode={darkMode} toggleMode={toggleMode} />
-      ) : (
+      ): role === "admin"  ? (
+        <NavbarAdmin darkMode={darkMode} toggleMode={toggleMode} />
+      ) :(
         <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       )}
 
@@ -72,7 +75,9 @@ function AppContent({ darkMode, toggleMode }) {
 
         <Route path="/profile" element={<ProtectedRoute><UserProfile darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/student-dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
+        
         <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/admin/messages" element={<ProtectedRoute><AdminMessagesPage darkMode={darkMode} /></ProtectedRoute>} />
 
         <Route path="/Prof" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />
         <Route path="/Prof/addcours" element={<ProtectedRoute><AddCoursePage darkMode={darkMode} toggleMode={toggleMode} /></ProtectedRoute>} />

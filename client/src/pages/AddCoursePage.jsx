@@ -11,7 +11,7 @@ function AddCoursePage({ darkMode }) {
   const [videos, setVideos] = useState([{ file: null, comment: '' }]);
   const [textes, setTextes] = useState([{ contenu: '' }]);
 
-  const userName = localStorage.getItem('userName');
+  const useremail = localStorage.getItem('email');
 
   const ajouterPdf = () => setPdfs([...pdfs, { file: null, text: '' }]);
   const ajouterImage = () => setImages([...images, { file: null, comment: '' }]);
@@ -36,7 +36,7 @@ function AddCoursePage({ darkMode }) {
     const formData = new FormData();
     formData.append("titre", titre);
     formData.append("description", description);
-    formData.append("nomProf", userName);
+    formData.append("emailProf", useremail);
     formData.append("textes", JSON.stringify(textes));
 
     // PDFs
@@ -185,7 +185,7 @@ function AddCoursePage({ darkMode }) {
         <button type="button" onClick={ajouterVideo}>Ajouter une autre Vidéo</button>
 
         <hr />
-        <h3>Ajouter des textes (contenu écrit)</h3>
+        <h3>Ajouter des textes (contenu écrit ou lien )</h3>
         {textes.map((t, index) => (
           <div key={index}>
             <textarea

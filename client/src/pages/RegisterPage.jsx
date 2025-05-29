@@ -48,11 +48,11 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
       const res = await axios.post('http://localhost:5000/api/auth/register', dataToSend);
       alert("✅ Inscription réussie !");
       console.log(res.data);
+      navigate("/verify-otp");
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Erreur d'inscription";
       alert("❌ " + errorMsg);
     }
-    navigate("/verify-otp");
   };
 
   return (

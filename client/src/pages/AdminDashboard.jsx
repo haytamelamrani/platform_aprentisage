@@ -17,9 +17,15 @@ const AdminDashboard = () => {
         const users = res.data;
         setEtudiantsCount(users.filter(u => u.role === 'etudiant').length);
         setProfesseursCount(users.filter(u => u.role === 'professeur').length);
+        
       })
       .catch(err => console.error('Erreur chargement utilisateurs :', err));
 
+    axios.get('http://localhost:5000/api/messages/all')
+      .then(res =>{
+        setMessagesCount(res.data.length);
+    })
+    .catch(err => console.error('Erreur chargement message :', err));
     // 🔹 Récupérer les cours
     axios.get('http://localhost:5000/api/admin/courses')
       .then(res => {
@@ -48,7 +54,6 @@ const AdminDashboard = () => {
         <button onClick={() => window.location.href = "/admin/cours"}>📁 Gérer les cours</button>
         <button onClick={() => window.location.href = "/admin/utilisateurs"}>👥 Gérer les utilisateurs</button>
         <button onClick={() => window.location.href = "/admin/messages"}>📨 Voir les messages</button>
-        <button onClick={() => window.location.href = "/logout"}>🚪 Déconnexion</button>
       </div>
     </div>
   );

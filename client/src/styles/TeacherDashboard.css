@@ -1,0 +1,74 @@
+.teacher-dashboard {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.dark-mode {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.logout-button {
+  margin-top: 1rem;
+  padding: 10px 15px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.messages-section {
+  margin-top: 2rem;
+}
+
+.messages-list {
+  list-style: none;
+  padding: 0;
+}
+
+.message-card {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+}
+
+.dark-mode .message-card {
+  background-color: #334155;
+  border-color: #475569;
+}
+
+.message-date {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.reply-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+}
+
+.reply-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reply-button:hover {
+  background-color: #059669;
+}

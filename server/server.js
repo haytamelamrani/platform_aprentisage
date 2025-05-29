@@ -28,6 +28,8 @@ app.use('/api/qcm', require('./routes/qcm'));
 app.use('/api/assistant', require('./routes/assistant'));
 app.use('/api/admin', require('./routes/admin'));
 
+app.use('/api/messages', require('./routes/message'));
+
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
 app.use(express.urlencoded({ extended: true }));

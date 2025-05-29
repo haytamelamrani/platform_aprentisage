@@ -27,4 +27,9 @@ router.get('/search', courseController.searchCourseByTitle);
 // 🆕 ✅ Récupérer un cours par son ID
 router.get('/:id', courseController.getCourseById);
 
+router.put('/:id', upload.fields([
+  { name: 'pdfs' }, { name: 'images' }, { name: 'video' }
+]), courseController.updateCourse);
+
+
 module.exports = router;
