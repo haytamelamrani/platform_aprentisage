@@ -11,6 +11,7 @@ const ModifierCours = () => {
     titre: '',
     description: '',
     nomProf: '',
+    emailProf: '',
     textes: [],
     pdfs: [],
     images: [],
@@ -30,7 +31,7 @@ const ModifierCours = () => {
         const data = res.data;
         setCourse({
           ...data,
-          textes: data.textes || [],
+          textes: data.textes?.map(t => ({ contenu: t })) || [],
           pdfs: data.pdfs || [],
           images: data.images || [],
           video: data.video || []
@@ -98,13 +99,20 @@ const ModifierCours = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const updatedData = {
-        ...course,
-        textes: course.textes.map(t => t.contenu), // uniquement le texte brut
-      };
+      const formData = new FormData();
+      formData.append("titre", course.titre);
+      formData.append("description", course.description);
+      formData.append("emailProf", course.nomProf); // envoie nomProf dans le champ attendu "emailProf"
 
-      await axios.put(`http://localhost:5000/api/courses/${id}`, updatedData, {
-        headers: { Authorization: `Bearer ${token}` }
+      formData.append("textes", JSON.stringify(course.textes.map(t => t.contenu)));
+      formData.append("pdfDescriptions", JSON.stringify(course.pdfs.map(p => p.description || '')));
+      formData.append("imageDescriptions", JSON.stringify(course.images.map(i => i.comment || '')));
+
+      await axios.put(`http://localhost:5000/api/courses/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
       });
 
       alert("✅ Cours mis à jour !");

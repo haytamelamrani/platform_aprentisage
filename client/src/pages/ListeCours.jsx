@@ -56,7 +56,7 @@ const ListeCours = () => {
             {courses.map(course => (
               <tr key={course._id}>
                 <td>{course.titre}</td>
-                <td>{course.nomProf}</td>
+                <td>{course.emailProf}</td>
                 <td>{course.description}</td>
                 <td>{new Date(course.createdAt).toLocaleDateString()}</td>
               
