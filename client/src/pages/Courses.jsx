@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/Courses.css';
+import AverageStars from '../components/AverageStars';
 
 const CoursesPage = ({ darkMode }) => {
   const [courses, setCourses] = useState([]);
@@ -75,9 +76,13 @@ const CoursesPage = ({ darkMode }) => {
               to={isLoggedIn ? `/Prof/courses/${course.titre}` : "/login"}
             >
               <div className="course-box">
+                <div className='course-box-header'>
                 <h2>{course.titre}</h2>
+                <AverageStars courseId={course._id} />
+                </div>
                 <p>{course.description}</p>
               </div>
+              
             </Link>
           ))}
         </div>

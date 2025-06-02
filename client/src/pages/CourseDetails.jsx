@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { BookOpen, FileText, ImageIcon, Video, CheckSquare, AlertCircle, Download } from 'lucide-react';
 import '../styles/CourseDetails.css';
+import RatingStars from '../components/RatingStars';
 
 const API_BASE_URL = 'http://localhost:5000';
 
@@ -235,6 +236,7 @@ const CourseDetailsPage = ({ darkMode }) => {
           {sending ? 'Envoi...' : 'Envoyer la question'}
         </button>
       </div>
+      <RatingStars courseId={course._id} />
     </div>
   );
 };
