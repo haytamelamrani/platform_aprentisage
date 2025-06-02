@@ -141,6 +141,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+.course-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
 
 .course-box::before {
   content: '';

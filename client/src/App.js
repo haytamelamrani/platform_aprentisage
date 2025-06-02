@@ -44,7 +44,6 @@ import Chatbot from './components/Chatbot';
 
 function AppContent({ darkMode, toggleMode }) {
   const location = useLocation();
-  const currentPath = location.pathname;
   const role = localStorage.getItem('userRole');
 
   return (

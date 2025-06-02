@@ -31,5 +31,8 @@ router.put('/:id', upload.fields([
   { name: 'pdfs' }, { name: 'images' }, { name: 'video' }
 ]), courseController.updateCourse);
 
+router.post('/rate', authMiddleware, courseController.rateCourse);
+router.get('/:courseId/average-rating', courseController.getCourseAverageRating);
+
 
 module.exports = router;

@@ -32,12 +32,17 @@ app.use('/api/messages', require('./routes/message'));
 
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
+app.use('/api/feedback', require('./routes/feedbackRoutes')); // ⭐ Avis des étudiants
+app.use('/api/courses', require('./routes/course'));
+
+
+
 app.use(express.urlencoded({ extended: true }));
 // 🔹 Route d’accueil
 app.get('/', (req, res) => {
   res.send('🎓 Bienvenue sur la plateforme d’apprentissage !');
 });
-
+  
 // 🔹 Gestion des routes inconnues
 app.use((req, res) => {
   res.status(404).json({ message: '❌ Route non trouvée' });

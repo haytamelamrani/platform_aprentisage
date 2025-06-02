@@ -227,3 +227,42 @@ exports.updateCourse = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la mise à jour du cours." });
   }
 };
+
+// ➕ Ajouter une note étoile
+exports.rateCourse = async (req, res) => {
+  const { courseId, rating } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) return res.status(404).json({ message: "Cours non trouvé" });
+
+    const existingRating = course.ratings.find(r => r.userId.toString() === userId);
+    if (existingRating) {
+      return res.status(400).json({ message: "Vous avez déjà noté ce cours" });
+    }
+
+    course.ratings.push({ userId, rating });
+    await course.save();
+
+    res.status(200).json({ message: "Note enregistrée avec succès" });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors de l’enregistrement de la note", error: err });
+  }
+};
+
+// 🔢 Obtenir la moyenne des étoiles
+exports.getCourseAverageRating = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.courseId);
+    if (!course) return res.status(404).json({ message: "Cours non trouvé" });
+
+    const ratings = course.ratings;
+    const total = ratings.reduce((acc, r) => acc + r.rating, 0);
+    const average = ratings.length ? total / ratings.length : 0;
+
+    res.status(200).json({ average, count: ratings.length });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors du calcul de la moyenne", error: err });
+  }
+};
