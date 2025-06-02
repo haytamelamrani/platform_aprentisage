@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/AdminDashboard.css';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ darkMode }) => {
   const userName = localStorage.getItem('userName');
 
   const [etudiantsCount, setEtudiantsCount] = useState(0);
@@ -50,11 +50,7 @@ const AdminDashboard = () => {
         <div className="stat">💬 Messages: {messagesCount}</div>
       </div>
 
-      <div className="buttons">
-        <button onClick={() => window.location.href = "/admin/cours"}>📁 Gérer les cours</button>
-        <button onClick={() => window.location.href = "/admin/utilisateurs"}>👥 Gérer les utilisateurs</button>
-        <button onClick={() => window.location.href = "/admin/messages"}>📨 Voir les messages</button>
-      </div>
+     
     </div>
   );
 };

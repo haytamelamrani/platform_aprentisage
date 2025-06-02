@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/ListeCours.css';
-
-const ListeCours = () => {
+import '../styles/ListeCours.css'
+const ListeCours = ({ darkMode }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +22,7 @@ const ListeCours = () => {
 
     try {
       await axios.delete(`http://localhost:5000/api/admin/courses/${id}`);
-      fetchCourses();
+      fetchCourses(); // Recharger la liste
     } catch (error) {
       console.error("❌ Erreur suppression cours :", error);
     }
@@ -34,7 +33,7 @@ const ListeCours = () => {
   }, []);
 
   return (
-    <div className="cours-container">
+    <div className={`cours-container ${darkMode ? 'dark-mode' : ''}`}>
       <h2>📚 Liste des Cours</h2>
 
       {loading ? (
@@ -59,15 +58,20 @@ const ListeCours = () => {
                 <td>{course.emailProf}</td>
                 <td>{course.description}</td>
                 <td>{new Date(course.createdAt).toLocaleDateString()}</td>
-              
                 <td>
-  <button className="edit-btn" onClick={() => window.location.href = `/admin/cours/modifier/${course._id}`}>
-    ✏️ Modifier
-  </button>
-  <button className="delete-btn" onClick={() => deleteCourse(course._id)}>
-    🗑️ Supprimer
-  </button>
-</td>
+                  <button
+                    className="edit-btn"
+                    onClick={() => window.location.href = `/admin/cours/modifier/${course._id}`}
+                  >
+                    ✏️ Modifier
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteCourse(course._id)}
+                  >
+                    🗑️ Supprimer
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

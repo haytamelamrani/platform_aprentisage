@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ModifierCours.css';
 
-const ModifierCours = () => {
+const ModifierCours = ({ darkMode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -102,7 +102,7 @@ const ModifierCours = () => {
       const formData = new FormData();
       formData.append("titre", course.titre);
       formData.append("description", course.description);
-      formData.append("emailProf", course.nomProf); // envoie nomProf dans le champ attendu "emailProf"
+      formData.append("emailProf", course.nomProf);
 
       formData.append("textes", JSON.stringify(course.textes.map(t => t.contenu)));
       formData.append("pdfDescriptions", JSON.stringify(course.pdfs.map(p => p.description || '')));
@@ -124,7 +124,7 @@ const ModifierCours = () => {
   };
 
   return (
-    <div className="modifier-cours-container">
+    <div className={`modifier-cours-container ${darkMode ? 'dark-mode' : ''}`}>
       <h2>🛠️ Modifier le cours</h2>
       <form onSubmit={handleSubmit} className="modifier-cours-form">
         <label>Titre :</label>
@@ -133,8 +133,8 @@ const ModifierCours = () => {
         <label>Description :</label>
         <textarea name="description" value={course.description} onChange={handleChange} />
 
-        <label>Nom du professeur :</label>
-        <input type="text" name="nomProf" value={course.nomProf} onChange={handleChange} />
+        <label>email du professeur :</label>
+        <input type="text" name="nomProf" value={course.emailProf} onChange={handleChange} />
 
         <h3>📝 Textes</h3>
         {course.textes.map((txt, i) => (
