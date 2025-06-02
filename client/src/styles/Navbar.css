@@ -59,7 +59,15 @@
   background-color: #1f1f1f;
   border-bottom: 1px solid #333;
 }
-
+.dark-mode .mode-toggle {
+  background: none;
+  border: 1px solid currentColor;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: white;
+}
 .dark-mode .logo {
   color: #00ff99;
 }

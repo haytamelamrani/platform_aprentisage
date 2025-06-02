@@ -6,6 +6,7 @@ const ProfProgressPage = ({ darkMode }) => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [profName, setProfEmail] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const email = localStorage.getItem('email');
@@ -58,21 +59,29 @@ const ProfProgressPage = ({ darkMode }) => {
         setLoading(false);
       }
     };
-
+     
     fetchData();
   }, []);
 
   return (
     <div className={`prof-progress-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
       <h1>Résultats des étudiants</h1>
-
+      <input
+        type="text"
+        placeholder="Rechercher un cours"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-input"
+      />
       {loading ? (
         <p>Chargement...</p>
       ) : results.length === 0 ? (
         <p>Aucun résultat trouvé pour vos cours.</p>
       ) : (
         <div className="results-grid">
-          {results.map((res, i) => (
+          {results
+            .filter(res => res.nomCours.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((res, i) => (
             <div key={i} className="result-card">
               <h2>{res.nomCours}</h2>
               <p><strong>Nom :</strong> {res.studentName}</p>
@@ -81,7 +90,8 @@ const ProfProgressPage = ({ darkMode }) => {
               <p><strong>Pourcentage :</strong> {res.pourcentage}%</p>
               <p><strong>Date :</strong> {res.date}</p>
             </div>
-          ))}
+          ))
+        }
         </div>
       )}
     </div>

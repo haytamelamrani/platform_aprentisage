@@ -1,72 +1,65 @@
+/* === STYLES GÉNÉRAUX === */
 .dashboard {
   padding: 2rem;
-  background-color: #121226;
-  color: #ffffff;
-  min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-h2 {
-  font-size: 2rem;
+/* === TITRE DE BIENVENUE === */
+.dashboard h2 {
+  font-size: 1.8rem;
   margin-bottom: 2rem;
-  color: #58ffb4;
+  font-weight: bold;
+  color: var(--accent-color);
 }
 
+/* === ZONE DES STATISTIQUES === */
 .stats {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.stat {
-  background-color: #1e1e3a;
-  padding: 1.2rem 2rem;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 255, 200, 0.15);
-  transition: transform 0.2s ease;
-}
-
-.stat:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
-button {
-  background-color: #3b82f6;
-  color: #fff;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  font-size: 1rem;
+/* === BOÎTE STATISTIQUE === */
+.stat {
+  flex: 1;
+  min-width: 220px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
+/* === ICÔNES DANS LES STATS === */
+.stat::before {
+  font-size: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .stats {
-    flex-direction: column;
-    align-items: center;
-  }
+/* === DARK MODE === */
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --card-bg: #1e1e1e;
+  --accent-color: #00e676;
+}
 
-  .buttons {
-    flex-direction: column;
-  }
+/* === LIGHT MODE === */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #1a1a1a;
+  --card-bg: #ffffff;
+  --accent-color: #0077ff;
+}
+
+/* Appliquer les couleurs de fond globalement */
+body,
+.dashboard {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
