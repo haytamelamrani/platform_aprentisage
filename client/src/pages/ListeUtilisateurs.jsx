@@ -6,6 +6,8 @@ const ListeUtilisateurs = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editedRoles, setEditedRoles] = useState({}); // 🆕
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('email');
 
   const fetchUsers = async () => {
     try {
@@ -50,16 +52,36 @@ const ListeUtilisateurs = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
-
+  const filteredResults = users.filter(res => {
+    const term = searchTerm.toLowerCase();
+    if (filterType === 'email') {
+      return res.email.toLowerCase().includes(term);
+    } else {
+      return res.nom.toLowerCase().includes(term);
+    }
+  });
   return (
     <div className="utilisateurs-container">
       <h2>👥 Liste des Utilisateurs</h2>
-
+      <div className="search-bar">
+        <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+          <option value="cours">🔍 Par email</option>
+          <option value="nom">🔍 Par nom</option>
+        </select>
+        <input
+          type="text"
+          placeholder={`Rechercher par ${filterType}`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+      </div>
       {loading ? (
         <p>Chargement...</p>
       ) : users.length === 0 ? (
         <p>Aucun utilisateur trouvé.</p>
       ) : (
+
         <table>
           <thead>
             <tr>
@@ -70,32 +92,32 @@ const ListeUtilisateurs = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => {
-              const currentEditedRole = editedRoles[user._id] || user.role;
+            {filteredResults.map((res, i) => {
+              const currentEditedRole = editedRoles[res._id] || res.role;
               return (
-                <tr key={user._id}>
-                  <td>{user.nom}</td>
-                  <td>{user.email}</td>
+                <tr key={res._id}>
+                  <td>{res.nom}</td>
+                  <td>{res.email}</td>
                   <td>
                     <select
                       value={currentEditedRole}
-                      onChange={(e) => handleSelectChange(user._id, e.target.value)}
+                      onChange={(e) => handleSelectChange(res._id, e.target.value)}
                     >
                       <option value="etudiant">Étudiant</option>
                       <option value="professeur">Professeur</option>
                       <option value="admin">Admin</option>
                     </select>
-                    {currentEditedRole !== user.role && (
+                    {currentEditedRole !== res.role && (
                       <button
                         className="edit-btn"
-                        onClick={() => applyRoleChange(user._id)}
+                        onClick={() => applyRoleChange(res._id)}
                       >
                         Modifier
                       </button>
                     )}
                   </td>
                   <td>
-                    <button className="delete-btn" onClick={() => deleteUser(user._id)}>
+                    <button className="delete-btn" onClick={() => deleteUser(res._id)}>
                       🗑️ Supprimer
                     </button>
                   </td>

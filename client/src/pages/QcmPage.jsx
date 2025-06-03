@@ -134,7 +134,7 @@ const QcmPage = ({ darkMode }) => {
           borderRadius: '6px'
         }}>
           <p><strong>🔍 Prévisualisation avant envoi :</strong></p>
-          <p><strong>Email :</strong> {localStorage.getItem('userEmail')}</p>
+          <p><strong>Email :</strong> {localStorage.getItem('email')}</p>
           <p><strong>Cours :</strong> {nomCours}</p>
           <p><strong>Questions :</strong> {qcms.length}</p>
         </div>

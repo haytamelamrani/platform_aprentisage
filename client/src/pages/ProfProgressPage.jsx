@@ -7,6 +7,7 @@ const ProfProgressPage = ({ darkMode }) => {
   const [loading, setLoading] = useState(true);
   const [profName, setProfEmail] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('cours'); // cours ou nom
 
   useEffect(() => {
     const email = localStorage.getItem('email');
@@ -30,7 +31,6 @@ const ProfProgressPage = ({ darkMode }) => {
           const email = entry._id;
           let studentName = '(Nom inconnu)';
 
-          // 🔍 Appel pour récupérer le nom de l’étudiant
           try {
             const userRes = await axios.get(`http://localhost:5000/api/auth/${email}`);
             studentName = userRes.data.nom || studentName;
@@ -59,29 +59,44 @@ const ProfProgressPage = ({ darkMode }) => {
         setLoading(false);
       }
     };
-     
+
     fetchData();
   }, []);
+
+  const filteredResults = results.filter(res => {
+    const term = searchTerm.toLowerCase();
+    if (filterType === 'cours') {
+      return res.nomCours.toLowerCase().includes(term);
+    } else {
+      return res.studentName.toLowerCase().includes(term);
+    }
+  });
 
   return (
     <div className={`prof-progress-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
       <h1>Résultats des étudiants</h1>
-      <input
-        type="text"
-        placeholder="Rechercher un cours"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-      />
+
+      <div className="search-bar">
+        <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+          <option value="cours">🔍 Par cours</option>
+          <option value="nom">🔍 Par nom</option>
+        </select>
+        <input
+          type="text"
+          placeholder={`Rechercher par ${filterType}`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       {loading ? (
         <p>Chargement...</p>
-      ) : results.length === 0 ? (
-        <p>Aucun résultat trouvé pour vos cours.</p>
+      ) : filteredResults.length === 0 ? (
+        <p>Aucun résultat trouvé.</p>
       ) : (
         <div className="results-grid">
-          {results
-            .filter(res => res.nomCours.toLowerCase().includes(searchTerm.toLowerCase()))
-            .map((res, i) => (
+          {filteredResults.map((res, i) => (
             <div key={i} className="result-card">
               <h2>{res.nomCours}</h2>
               <p><strong>Nom :</strong> {res.studentName}</p>
@@ -90,8 +105,7 @@ const ProfProgressPage = ({ darkMode }) => {
               <p><strong>Pourcentage :</strong> {res.pourcentage}%</p>
               <p><strong>Date :</strong> {res.date}</p>
             </div>
-          ))
-        }
+          ))}
         </div>
       )}
     </div>
