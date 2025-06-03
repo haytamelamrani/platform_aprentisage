@@ -34,6 +34,7 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
       />
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+        <li><Link to="/admin-dashboard">Tableau de bord</Link></li>
         <li><Link to="/admin/cours">Gérer les cours</Link></li>
         <li><Link to="/admin/utilisateurs">Gérer les utilisateurs</Link></li>
         <li><Link to="/admin/messages">Gérer les messages</Link></li>

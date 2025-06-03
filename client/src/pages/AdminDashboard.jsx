@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/AdminDashboard.css';
+import GraphiquesDashboard from '../components/GrapheAdmin';
+import GrapheAdmin from '../components/GrapheAdmin';
 
 const AdminDashboard = ({ darkMode }) => {
   const userName = localStorage.getItem('userName');
@@ -49,7 +51,7 @@ const AdminDashboard = ({ darkMode }) => {
         <div className="stat">📚 Cours: {coursCount}</div>
         <div className="stat">💬 Messages: {messagesCount}</div>
       </div>
-
+      <GrapheAdmin darkMode={darkMode} />
      
     </div>
   );

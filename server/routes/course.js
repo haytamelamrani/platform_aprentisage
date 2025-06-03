@@ -35,4 +35,9 @@ router.post('/rate', authMiddleware, courseController.rateCourse);
 router.get('/:courseId/average-rating', courseController.getCourseAverageRating);
 
 
+
+
+
+
+
 module.exports = router;
