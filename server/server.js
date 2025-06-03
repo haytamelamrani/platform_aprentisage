@@ -33,7 +33,6 @@ app.use('/api/messages', require('./routes/message'));
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
 app.use('/api/feedback', require('./routes/feedbackRoutes')); // ⭐ Avis des étudiants
-app.use('/api/courses', require('./routes/course'));
 
 
 

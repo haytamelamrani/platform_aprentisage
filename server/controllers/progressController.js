@@ -1,4 +1,6 @@
 const Progress = require('../models/Progress');
+const User = require('../models/User'); 
+
 
 // 🔹 Enregistrer ou mettre à jour la progression
 const saveProgress = async (req, res) => {
@@ -63,8 +65,51 @@ const getProgressByEmail = async (req, res) => {
   }
 };
 
+const getBestScoresByCourse = async (req, res) => {
+  try {
+    // Récupérer tous les progrès
+    const progresses = await Progress.find();
+
+    // Map cours → { maxScore, userEmail }
+    const bestScoresMap = {};
+
+    // Parcours de tous les scores pour trouver le max par cours
+    for (const progress of progresses) {
+      const email = progress._id;
+      for (const scoreEntry of progress.scores) {
+        const { nomCours, score } = scoreEntry;
+
+        if (!bestScoresMap[nomCours] || score > bestScoresMap[nomCours].score) {
+          bestScoresMap[nomCours] = { score, email };
+        }
+      }
+    }
+
+    // Maintenant on récupère les noms utilisateurs correspondants
+    const emails = Object.values(bestScoresMap).map(entry => entry.email);
+    const users = await User.find({ email: { $in: emails } });
+
+    // Créer un tableau résultat
+    const result = Object.entries(bestScoresMap).map(([cours, { score, email }]) => {
+      const user = users.find(u => u.email === email);
+      return {
+        cours,
+        meilleurScore: score,
+        etudiant: user ? user.nom : email
+      };
+    });
+
+    res.json(result);
+  } catch (error) {
+    console.error('Erreur getBestScoresByCourse:', error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+};
+
+
 module.exports = {
   saveProgress,
   getAllProgress,
   getProgressByEmail,
+  getBestScoresByCourse
 };

@@ -266,3 +266,47 @@ exports.getCourseAverageRating = async (req, res) => {
     res.status(500).json({ message: "Erreur lors du calcul de la moyenne", error: err });
   }
 };
+
+// 1. Nombre de cours créés par professeur
+exports.getCoursesCountByProf = async (req, res) => {
+  try {
+    const result = await Course.aggregate([
+      {
+        $group: {
+          _id: '$emailProf',  // On groupe par email du prof
+          totalCourses: { $sum: 1 }
+        }
+      },
+      { $sort: { totalCourses: -1 } }
+    ]);
+    res.json(result.map(item => ({ prof: item._id, totalCourses: item.totalCourses })));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erreur récupération nombre cours par prof' });
+  }
+};
+
+// 2. Top des meilleurs cours par moyenne rating
+exports.getTopCoursesByRating = async (req, res) => {
+  try {
+    const courses = await Course.find();
+
+    const formatted = courses.map(c => {
+      const total = c.ratings.reduce((sum, r) => sum + r.rating, 0);
+      const avg = c.ratings.length ? total / c.ratings.length : 0;
+      return {
+        cours: c.titre,
+        moyenne: Number(avg.toFixed(2))
+      };
+    });
+
+    // Tri décroissant par moyenne
+    formatted.sort((a, b) => b.moyenne - a.moyenne);
+
+    // Renvoie les top 5 (ou moins)
+    res.json(formatted.slice(0, 5));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erreur récupération top cours' });
+  }
+};

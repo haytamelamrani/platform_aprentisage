@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Course = require('../models/Course');
+const { getMonthlyRegistrations } = require('../controllers/authController');
+const {getCoursesCountByProf,getTopCoursesByRating} = require('../controllers/courseController');
+const { getBestScoresByCourse } = require('../controllers/progressController');
+
+
 
 // 🔹 Récupérer tous les utilisateurs
 router.get('/users', async (req, res) => {
@@ -57,5 +62,11 @@ router.delete('/courses/:id', async (req, res) => {
     res.status(500).json({ error: 'Erreur lors de la suppression du cours' });
   }
 });
+
+router.get('/registrations', getMonthlyRegistrations);
+router.get('/courses-by-prof', getCoursesCountByProf);
+router.get('/top-courses-rating', getTopCoursesByRating);
+router.get('/best-scores', getBestScoresByCourse);
+
 
 module.exports = router;

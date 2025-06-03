@@ -144,3 +144,31 @@ exports.getUserByEmail = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur." });
   }
 };
+
+exports.getMonthlyRegistrations = async (req, res) => {
+  try {
+    const result = await User.aggregate([
+      {
+        $group: {
+          _id: { $month: "$createdAt" },
+          total: { $sum: 1 }
+        }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+
+    const mois = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+
+    const formatted = result.map(r => ({
+      mois: mois[r._id - 1],
+      total: r.total
+    }));
+
+    res.json(formatted);
+  } catch (error) {
+    console.error("Erreur getMonthlyRegistrations:", error);
+    res.status(500).json({ message: "Erreur lors de la récupération des inscriptions mensuelles" });
+  }
+};
+
+
