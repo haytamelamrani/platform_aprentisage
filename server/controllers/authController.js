@@ -128,44 +128,6 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-// 🔁 Changer le mot de passe depuis profil connecté
-exports.changePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
-
-  try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-
-    const isMatch = await bcrypt.compare(currentPassword, user.motdepasse);
-    if (!isMatch) return res.status(400).json({ message: 'Ancien mot de passe incorrect.' });
-
-    const hashed = await bcrypt.hash(newPassword, 10);
-    user.motdepasse = hashed;
-    await user.save();
-
-    res.json({ message: 'Mot de passe mis à jour avec succès.' });
-  } catch (err) {
-    res.status(500).json({ message: 'Erreur serveur.' });
-  }
-};
-
-// 🔄 Mise à jour du profil utilisateur
-exports.updateProfile = async (req, res) => {
-  const { nom, email } = req.body;
-
-  try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-
-    if (nom) user.nom = nom;
-    if (email) user.email = email;
-    await user.save();
-
-    res.json({ message: 'Profil mis à jour avec succès.', user: { nom: user.nom, email: user.email } });
-  } catch (err) {
-    res.status(500).json({ message: 'Erreur serveur.' });
-  }
-};
 
 // 🔍 Obtenir un utilisateur par email
 exports.getUserByEmail = async (req, res) => {

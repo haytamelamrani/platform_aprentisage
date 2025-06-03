@@ -18,11 +18,7 @@ router.get('/prof', authMiddleware, isProfesseur, (req, res) => {
   res.json({ message: 'Bienvenue professeur' });
 });
 
-// 🔄 Changer le mot de passe (depuis profil connecté)
-router.put('/change-password', authMiddleware, authController.changePassword);
 
-// 🧾 Mise à jour du profil
-router.put('/update-profile', authMiddleware, authController.updateProfile);
 
 
 
