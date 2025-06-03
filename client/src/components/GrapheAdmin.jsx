@@ -18,6 +18,20 @@ const GrapheAdmin = () => {
   const [coursesByProf, setCoursesByProf] = useState([]);
   const [topCoursesRating, setTopCoursesRating] = useState([]);
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload; // objet complet de la donnée (cours, meilleurScore, etudiant)
+      return (
+        <div style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc' }}>
+          <p><strong>{label}</strong></p>
+          <p>Note: {data.meilleurScore}</p>
+          <p>Étudiant: {data.etudiant}</p>
+        </div>
+      );
+    }
+  
+    return null;
+  };
   useEffect(() => {
     axios.get('http://localhost:5000/api/admin/registrations')
       .then(res => setInscriptions(res.data))
@@ -110,11 +124,7 @@ const GrapheAdmin = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="cours" />
             <YAxis />
-            <Tooltip formatter={(value, name) => {
-              if (name === "meilleurScore") return [value, "Note"];
-              if (name === "etudiant") return [value, "Étudiant"];
-              return value;
-            }} />
+            <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="meilleurScore" fill={colors.bestScores} />
           </BarChart>
         </ResponsiveContainer>
