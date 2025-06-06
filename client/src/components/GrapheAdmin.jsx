@@ -6,7 +6,8 @@ import {
   XAxis, YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  PieChart, Pie, Cell, Legend
 } from 'recharts';
 
 const GrapheAdmin = () => {
@@ -17,6 +18,9 @@ const GrapheAdmin = () => {
   const [bestScores, setBestScores] = useState([]);
   const [coursesByProf, setCoursesByProf] = useState([]);
   const [topCoursesRating, setTopCoursesRating] = useState([]);
+  const [niveauEtudeData, setNiveauEtudeData] = useState([]);
+  const [niveauProgData, setNiveauProgData] = useState([]);
+  
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -60,8 +64,17 @@ const GrapheAdmin = () => {
     axios.get('http://localhost:5000/api/admin/top-courses-rating')
       .then(res => setTopCoursesRating(res.data))
       .catch(console.error);
-  }, []);
 
+      axios.get('http://localhost:5000/api/admin/repartition')
+      .then(res => {
+        const format = (arr) =>
+          arr.map((item) => ({ name: item._id || 'Non défini', value: item.count }));
+
+        setNiveauEtudeData(format(res.data.niveauEtude));
+        setNiveauProgData(format(res.data.niveauProg));
+      });
+  }, []);
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A020F0'];
   const colors = {
     inscriptions: "#8884d8",
     progressions: ["#8884d8", "#82ca9d", "#ffc658", "#ff7300", "#413ea0"],
@@ -74,6 +87,37 @@ const GrapheAdmin = () => {
 
   return (
     <div style={{ display: 'grid', gap: '2rem', marginTop: '2rem' }}>
+      <div className="graphiques-container" style={{ display: 'flex', gap: '50px', flexWrap: 'wrap' }}>
+      <div style={{ width: '400px', height: '300px' }}>
+        <h3>🎓 Répartition par Niveau d'Étude</h3>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie data={niveauEtudeData} dataKey="value" nameKey="name" outerRadius={100}>
+              {niveauEtudeData.map((_, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div style={{ width: '400px', height: '300px' }}>
+        <h3>📘 Répartition par Niveau de Progression</h3>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie data={niveauProgData} dataKey="value" nameKey="name" outerRadius={100}>
+                {niveauProgData.map((_, index) => (
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
       {/* Inscriptions par mois */}
       <div>
         <h3>📈 Inscriptions par mois</h3>
@@ -88,6 +132,7 @@ const GrapheAdmin = () => {
         </ResponsiveContainer>
       </div>
 
+      
       {/* Nombre de cours créés par professeur */}
       <div>
         <h3>👨‍🏫 Nombre de cours créés par professeur</h3>
@@ -129,6 +174,8 @@ const GrapheAdmin = () => {
           </BarChart>
         </ResponsiveContainer>
       </div>
+
+     
     </div>
   );
 };

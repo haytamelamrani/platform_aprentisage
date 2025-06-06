@@ -7,6 +7,9 @@ const API_BASE_URL = 'http://localhost:5000';
 const TeacherDashboard = ({ darkMode }) => {
   const userName = localStorage.getItem('userName');
   const userEmail = localStorage.getItem('email');
+  const userprenom = localStorage.getItem('prenom');
+  
+  
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,7 +47,7 @@ const TeacherDashboard = ({ darkMode }) => {
   return (
     <div className={`teacher-dashboard ${darkMode ? 'dark-mode' : ''}`}>
       <div className="dashboard-header">
-        <h2>Bienvenue professeur 👩‍🏫 {userName}</h2>
+        <h2>Bienvenue professeur 👩‍🏫 {userName} {userprenom}</h2>
         <p>Voici votre tableau de bord pour gérer les messages reçus.</p>
         
       </div>

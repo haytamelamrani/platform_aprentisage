@@ -39,6 +39,9 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
 
     const dataToSend = {
       nom: formData.nom,
+      prenom: formData.prenom,
+      niveauEtude: formData.niveauEtude,
+      niveauProg: formData.niveauProg,
       email: formData.email,
       motdepasse: formData.password,
       role,

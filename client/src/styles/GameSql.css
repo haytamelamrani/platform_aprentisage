@@ -1,0 +1,83 @@
+.sql-game-container {
+    display: flex;
+    height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .left-panel {
+    flex: 2;
+    padding: 20px;
+    border-right: 2px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .left-panel textarea {
+    background-color: #121212;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    margin-bottom: 10px;
+  }
+  
+  .left-panel button {
+    padding: 10px 15px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .result-table {
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .result-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .result-table th,
+  .result-table td {
+    border-bottom: 1px solid #444;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .right-panel {
+    flex: 1;
+    padding: 20px;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .story h2,
+  .police-hint h3 {
+    color: #ff4c4c;
+  }
+  
+  .story {
+    margin-bottom: 30px;
+  }
+  
+  .police-hint code {
+    background: #222;
+    padding: 6px 10px;
+    display: inline-block;
+    border-radius: 5px;
+    color: #ffaaaa;
+  }
+  

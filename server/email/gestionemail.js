@@ -17,7 +17,13 @@ function envoyerCodeParEmail(destinataire, code) {
     from: process.env.EMAIL_USER,
     to: destinataire,
     subject: 'Code de vérification',
-    text: `Bonjour, \nPour accéder à Smart Learn, voici votre code de vérification: ${code}`
+    text: `Bonjour,\n\n
+          Pour finaliser votre connexion à Smart Learn, voici votre code de vérification :\n\n
+          \t**${code}**\n\n
+          Ce code est valable 10 minutes. Si vous n'avez pas fait cette demande, ignorez ce message.\n\n
+          Cordialement,\n
+          L'équipe Smart Learn\n
+          support@smartlearn.com`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
