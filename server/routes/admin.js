@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Course = require('../models/Course');
-const { getMonthlyRegistrations } = require('../controllers/authController');
+const { getMonthlyRegistrations,getRepartitionUsers } = require('../controllers/authController');
 const {getCoursesCountByProf,getTopCoursesByRating} = require('../controllers/courseController');
 const { getBestScoresByCourse } = require('../controllers/progressController');
 
@@ -67,6 +67,6 @@ router.get('/registrations', getMonthlyRegistrations);
 router.get('/courses-by-prof', getCoursesCountByProf);
 router.get('/top-courses-rating', getTopCoursesByRating);
 router.get('/best-scores', getBestScoresByCourse);
-
+router.get('/repartition', getRepartitionUsers);
 
 module.exports = router;

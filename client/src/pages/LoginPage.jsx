@@ -27,9 +27,10 @@ const LoginPage = ({ darkMode }) => {
       localStorage.setItem('userRole', user.role);
       localStorage.setItem('userName', user.nom);
       localStorage.setItem('email', email);
-
+      localStorage.setItem('prenom', user.prenom);
       setMsg('✅ Connexion réussie');
 
+      console.log("prenom",localStorage.getItem('prenom'));
       // ✅ Redirection selon le rôle
       if (user.role === 'etudiant') {
         navigate('/student-dashboard');

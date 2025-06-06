@@ -40,6 +40,8 @@ import AdminMessagesPage from './pages/AdminMessagePage';
 
 import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
+import GamePage from './pages/GamePage';
+import SqlGame from './pages/GameSql';
 
 
 function AppContent({ darkMode, toggleMode }) {
@@ -91,7 +93,8 @@ function AppContent({ darkMode, toggleMode }) {
 
         <Route path="/admin/cours/modifier/:id" element={<ProtectedRoute><ModifierCours /></ProtectedRoute>} />
 
-
+        <Route path="/etudiant/GameSql" element={<ProtectedRoute>< SqlGame/></ProtectedRoute>} />
+        <Route path="/etudiant/jeux" element={<ProtectedRoute><GamePage /></ProtectedRoute>} />
 
         <Route path="/etudiant/notes" element={<ProtectedRoute><ProgressPage darkMode={darkMode} /></ProtectedRoute>} />
 

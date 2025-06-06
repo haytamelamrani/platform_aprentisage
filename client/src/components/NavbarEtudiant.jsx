@@ -35,7 +35,7 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
         <li><Link to="/courses">Cours</Link></li>
-        <li><Link to="#">jeux</Link></li>
+        <li><Link to="/etudiant/jeux">jeux</Link></li>
         <li><Link to="/etudiant/notes">historique</Link></li>
 
         {!isLoggedIn && (

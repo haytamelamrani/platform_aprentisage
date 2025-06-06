@@ -54,19 +54,27 @@ const ListeUtilisateurs = () => {
   }, []);
   const filteredResults = users.filter(res => {
     const term = searchTerm.toLowerCase();
+  
     if (filterType === 'email') {
       return res.email.toLowerCase().includes(term);
+    } else if (filterType === 'etudiant') {
+      return res.role.toLowerCase() === 'etudiant';
+    } else if (filterType === 'prof') {
+      return res.role.toLowerCase() === 'professeur';
     } else {
       return res.nom.toLowerCase().includes(term);
     }
   });
+  
   return (
     <div className="utilisateurs-container">
       <h2>👥 Liste des Utilisateurs</h2>
       <div className="search-bar">
         <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-          <option value="cours">🔍 Par email</option>
+          <option value="email">🔍 Par email</option>
           <option value="nom">🔍 Par nom</option>
+          <option value="etudiant">🔍 tout les etudiant</option>
+          <option value="prof">🔍 tout les prof</option>
         </select>
         <input
           type="text"
