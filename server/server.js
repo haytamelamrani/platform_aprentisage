@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
+const logRoutes = require('./routes/log');
 
 // 🔹 Charger les variables d’environnement
 dotenv.config();
@@ -33,7 +34,7 @@ app.use('/api/messages', require('./routes/message'));
 app.use('/api/progress', require('./routes/progress')); // 🔁 Progression des étudiants
 
 app.use('/api/feedback', require('./routes/feedbackRoutes')); // ⭐ Avis des étudiants
-
+app.use('/api/logs', logRoutes);
 
 
 app.use(express.urlencoded({ extended: true }));

@@ -4,7 +4,7 @@ import '../styles/RegisterPage.css';
 import studentIcon from '../assets/student.png';
 import teacherIcon from '../assets/teacher.png';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+
 
 const RegisterPage = ({ darkMode, toggleMode }) => {
   const [role, setRole] = useState('');
@@ -35,7 +35,6 @@ const RegisterPage = ({ darkMode, toggleMode }) => {
       return;
     }
 
-    const dateInscription = new Date().toISOString().split('T')[0];
 
     const dataToSend = {
       nom: formData.nom,

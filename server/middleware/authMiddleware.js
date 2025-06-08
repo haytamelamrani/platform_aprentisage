@@ -1,6 +1,7 @@
+// middlewares/authMiddleware.js
 const jwt = require('jsonwebtoken');
 
-// ✅ Middleware principal : vérifie si le token JWT est présent et valide
+// Middleware principal : vérifie que le token JWT est présent et valide
 const authMiddleware = (req, res, next) => {
   const authHeader = req.header('Authorization');
 
@@ -12,13 +13,14 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified; // Ajoute les infos du token (id, role...) à req.user
+    req.user = verified; // id, role, etc. disponibles dans req.user
     next();
   } catch (error) {
     return res.status(403).json({ message: 'Token invalide' });
   }
 };
-// ✅ Middleware : Vérifie si l'utilisateur est admin
+
+// Middleware pour restreindre l'accès aux admins uniquement
 const isAdmin = (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: 'Accès réservé aux administrateurs.' });
@@ -26,13 +28,15 @@ const isAdmin = (req, res, next) => {
   next();
 };
 
-// ✅ Middleware : Vérifie si l'utilisateur est professeur
+// Middleware pour restreindre l'accès aux professeurs uniquement
 const isProfesseur = (req, res, next) => {
   if (req.user.role !== 'professeur') {
     return res.status(403).json({ message: 'Accès réservé aux professeurs.' });
   }
   next();
 };
+
+// Middleware pour restreindre l'accès aux étudiants uniquement
 const isEtudiant = (req, res, next) => {
   if (req.user.role !== 'etudiant') {
     return res.status(403).json({ message: 'Accès réservé aux étudiants.' });
@@ -44,5 +48,5 @@ module.exports = {
   authMiddleware,
   isAdmin,
   isProfesseur,
-  isEtudiant
+  isEtudiant,
 };
