@@ -1,83 +1,1076 @@
-.sql-game-container {
-    display: flex;
-    height: 100vh;
-    background-color: #1e1e1e;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
+/* ===== MODE CLAIR - SQL GAME ===== */
+
+/* Container principal */
+.light-mode .sql-game-main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Panels */
+.light-mode .sql-game-left-panel,
+.light-mode .sql-game-right-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  height: fit-content;
+  border: 1px solid #e9ecef;
+}
+
+/* Console Header */
+.light-mode .sql-console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.light-mode .sql-console-title {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.light-mode .sql-level-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.light-mode .sql-level-badge {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .sql-level-title {
+  font-size: 0.95rem;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+/* Input SQL */
+.light-mode .sql-input-textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 1.2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #212529;
+  line-height: 1.5;
+}
+
+.light-mode .sql-input-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: #ffffff;
+}
+
+.light-mode .sql-input-textarea::placeholder {
+  color: #868e96;
+  font-style: italic;
+}
+
+/* Buttons */
+.light-mode .sql-button-group {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.light-mode .sql-hint-button,
+.light-mode .sql-reset-button,
+.light-mode .sql-execute-button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .sql-hint-button {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.light-mode .sql-hint-button:hover {
+  background: #856404;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.light-mode .sql-reset-button {
+  background: #95a5a6;
+  color: white;
+}
+
+.light-mode .sql-reset-button:hover {
+  background: #7f8c8d;
+  transform: translateY(-2px);
+}
+
+.light-mode .sql-execute-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.light-mode .sql-execute-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Hint Box */
+.light-mode .sql-hint-box {
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-left: 6px solid #856404;
+}
+
+.light-mode .sql-hint-title {
+  margin: 0 0 0.8rem 0;
+  color: #856404;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.light-mode .sql-hint-text {
+  margin: 0;
+  color: #856404;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Messages */
+.light-mode .sql-message {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-left: 6px solid;
+}
+
+.light-mode .sql-message-success {
+  background: #d4edda;
+  color: #155724;
+  border-left-color: #155724;
+}
+
+.light-mode .sql-message-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left-color: #721c24;
+}
+
+.light-mode .sql-message-icon {
+  font-size: 1.2rem;
+}
+
+.light-mode .sql-message-text {
+  flex: 1;
+}
+
+/* Result Section */
+.light-mode .sql-result-section {
+  margin-top: 1.5rem;
+}
+
+.light-mode .sql-result-title {
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.light-mode .sql-table-container {
+  max-height: 450px;
+  overflow: auto;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: #f8f9fa;
+}
+
+.light-mode .sql-result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.light-mode .sql-table-header-cell {
+  background: #667eea;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.light-mode .sql-table-cell {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  color: #212529;
+  font-weight: 500;
+}
+
+.light-mode .sql-table-row-even {
+  background: #f8f9fa;
+}
+
+.light-mode .sql-table-row:hover {
+  background: #e3f2fd;
+}
+
+.light-mode .sql-no-result {
+  text-align: center;
+  color: #868e96;
+  font-style: italic;
+  padding: 3rem;
+  font-size: 1.1rem;
+}
+
+/* Story Section */
+.light-mode .sql-story-section {
+  margin-bottom: 2rem;
+}
+
+.light-mode .sql-story-title {
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.light-mode .sql-story-text {
+  line-height: 1.7;
+  color: #6c757d;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+.light-mode .sql-victory-message {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.light-mode .sql-victory-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.light-mode .sql-victory-text {
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Tabs */
+.light-mode .sql-tabs-container {
+  margin-bottom: 2rem;
+}
+
+.light-mode .sql-tab-buttons {
+  display: flex;
+  border-bottom: 3px solid #e0e0e0;
+  margin-bottom: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+
+.light-mode .sql-tab-button {
+  padding: 1rem 1.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #6c757d;
+  transition: all 0.3s ease;
+  border-bottom: 4px solid transparent;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.light-mode .sql-tab-active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  background: #ffffff;
+}
+
+.light-mode .sql-tab-button:hover {
+  background: #e9ecef;
+  color: #2c3e50;
+}
+
+.light-mode .sql-tab-content {
+  padding: 1rem 0;
+}
+
+.light-mode .sql-tab-content-title {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Table Info & Commands */
+.light-mode .sql-table-info,
+.light-mode .sql-commands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.light-mode .sql-table-item,
+.light-mode .sql-command-item {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 6px solid #667eea;
+  transition: all 0.3s ease;
+}
+
+.light-mode .sql-table-item:hover,
+.light-mode .sql-command-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .sql-table-item-name,
+.light-mode .sql-command-name {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.light-mode .sql-table-item-description {
+  color: #6c757d;
+}
+
+.light-mode .sql-table-item-schema,
+.light-mode .sql-command-code {
+  background: #e9ecef;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #495057;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* City Map */
+.light-mode .sql-city-map {
+  position: relative;
+  height: 350px;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.light-mode .sql-store {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.light-mode .sql-store:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.light-mode .sql-store-marker {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.light-mode .sql-store-label {
+  background: white;
+  color: #2c3e50;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #667eea;
+}
+
+.light-mode .sql-map-title {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+/* Progress Section */
+.light-mode .sql-progress-section {
+  text-align: center;
+}
+
+.light-mode .sql-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 2px solid #dee2e6;
+}
+
+.light-mode .sql-progress-fill {
+  height: 100%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  transition: width 0.8s ease;
+  border-radius: 25px;
+}
+
+.light-mode .sql-progress-text {
+  margin: 0;
+  color: #6c757d;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ===== MODE SOMBRE - SQL GAME ===== */
+
+/* Container principal */
+.dark-mode .sql-game-main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Panels */
+.dark-mode .sql-game-left-panel,
+.dark-mode .sql-game-right-panel {
+  background: #161b22;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  height: fit-content;
+  border: 1px solid #30363d;
+}
+
+/* Console Header */
+.dark-mode .sql-console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #21262d;
+}
+
+.dark-mode .sql-console-title {
+  margin: 0;
+  color: #f0f6fc;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.dark-mode .sql-level-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dark-mode .sql-level-badge {
+  background: linear-gradient(45deg, #238636, #2ea043);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .sql-level-title {
+  font-size: 0.95rem;
+  color: #8b949e;
+  font-weight: 600;
+}
+
+/* Input SQL */
+.dark-mode .sql-input-textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 1.2rem;
+  border: 2px solid #30363d;
+  border-radius: 12px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  background: #21262d;
+  color: #f0f6fc;
+  line-height: 1.5;
+}
+
+.dark-mode .sql-input-textarea:focus {
+  outline: none;
+  border-color: #238636;
+  box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.3);
+  background: #161b22;
+}
+
+.dark-mode .sql-input-textarea::placeholder {
+  color: #6e7681;
+  font-style: italic;
+}
+
+/* Buttons */
+.dark-mode .sql-button-group {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.dark-mode .sql-hint-button,
+.dark-mode .sql-reset-button,
+.dark-mode .sql-execute-button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .sql-hint-button {
+  background: #2d2408;
+  color: #d29922;
+  border: 1px solid #bb8009;
+}
+
+.dark-mode .sql-hint-button:hover {
+  background: #d29922;
+  color: #0d1117;
+  transform: translateY(-2px);
+}
+
+.dark-mode .sql-reset-button {
+  background: #6e7681;
+  color: white;
+}
+
+.dark-mode .sql-reset-button:hover {
+  background: #8b949e;
+  transform: translateY(-2px);
+}
+
+.dark-mode .sql-execute-button {
+  background: linear-gradient(45deg, #238636, #2ea043);
+  color: white;
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.dark-mode .sql-execute-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Hint Box */
+.dark-mode .sql-hint-box {
+  background: #2d2408;
+  border: 2px solid #bb8009;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-left: 6px solid #d29922;
+}
+
+.dark-mode .sql-hint-title {
+  margin: 0 0 0.8rem 0;
+  color: #d29922;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.dark-mode .sql-hint-text {
+  margin: 0;
+  color: #d29922;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Messages */
+.dark-mode .sql-message {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-left: 6px solid;
+}
+
+.dark-mode .sql-message-success {
+  background: #0f2419;
+  color: #3fb950;
+  border-left-color: #3fb950;
+}
+
+.dark-mode .sql-message-error {
+  background: #2d1117;
+  color: #f85149;
+  border-left-color: #f85149;
+}
+
+.dark-mode .sql-message-icon {
+  font-size: 1.2rem;
+}
+
+.dark-mode .sql-message-text {
+  flex: 1;
+}
+
+/* Result Section */
+.dark-mode .sql-result-section {
+  margin-top: 1.5rem;
+}
+
+.dark-mode .sql-result-title {
+  color: #f0f6fc;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.dark-mode .sql-table-container {
+  max-height: 450px;
+  overflow: auto;
+  border: 2px solid #30363d;
+  border-radius: 12px;
+  background: #21262d;
+}
+
+.dark-mode .sql-result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.dark-mode .sql-table-header-cell {
+  background: #238636;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dark-mode .sql-table-cell {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #21262d;
+  color: #f0f6fc;
+  font-weight: 500;
+}
+
+.dark-mode .sql-table-row-even {
+  background: #30363d;
+}
+
+.dark-mode .sql-table-row:hover {
+  background: #21262d;
+}
+
+.dark-mode .sql-no-result {
+  text-align: center;
+  color: #6e7681;
+  font-style: italic;
+  padding: 3rem;
+  font-size: 1.1rem;
+}
+
+/* Story Section */
+.dark-mode .sql-story-section {
+  margin-bottom: 2rem;
+}
+
+.dark-mode .sql-story-title {
+  color: #f0f6fc;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.dark-mode .sql-story-text {
+  line-height: 1.7;
+  color: #8b949e;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+.dark-mode .sql-victory-message {
+  background: linear-gradient(135deg, #238636, #2ea043);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .sql-victory-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.dark-mode .sql-victory-text {
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Tabs */
+.dark-mode .sql-tabs-container {
+  margin-bottom: 2rem;
+}
+
+.dark-mode .sql-tab-buttons {
+  display: flex;
+  border-bottom: 3px solid #30363d;
+  margin-bottom: 1.5rem;
+  background: #21262d;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+
+.dark-mode .sql-tab-button {
+  padding: 1rem 1.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #8b949e;
+  transition: all 0.3s ease;
+  border-bottom: 4px solid transparent;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.dark-mode .sql-tab-active {
+  color: #238636;
+  border-bottom-color: #238636;
+  background: #161b22;
+}
+
+.dark-mode .sql-tab-button:hover {
+  background: #21262d;
+  color: #f0f6fc;
+}
+
+.dark-mode .sql-tab-content {
+  padding: 1rem 0;
+}
+
+.dark-mode .sql-tab-content-title {
+  color: #f0f6fc;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Table Info & Commands */
+.dark-mode .sql-table-info,
+.dark-mode .sql-commands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.dark-mode .sql-table-item,
+.dark-mode .sql-command-item {
+  padding: 1.5rem;
+  background: #21262d;
+  border-radius: 12px;
+  border-left: 6px solid #238636;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .sql-table-item:hover,
+.dark-mode .sql-command-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .sql-table-item-name,
+.dark-mode .sql-command-name {
+  color: #f0f6fc;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.dark-mode .sql-table-item-description {
+  color: #8b949e;
+}
+
+.dark-mode .sql-table-item-schema,
+.dark-mode .sql-command-code {
+  background: #30363d;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #238636;
+  display: block;
+  margin-top: 0.5rem;
+  border: 1px solid #21262d;
+}
+
+/* City Map */
+.dark-mode .sql-city-map {
+  position: relative;
+  height: 350px;
+  background: linear-gradient(135deg, #238636, #2ea043);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .sql-store {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .sql-store:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.dark-mode .sql-store-marker {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.dark-mode .sql-store-label {
+  background: #161b22;
+  color: #f0f6fc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 2px solid #238636;
+}
+
+.dark-mode .sql-map-title {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+/* Progress Section */
+.dark-mode .sql-progress-section {
+  text-align: center;
+}
+
+.dark-mode .sql-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #21262d;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 2px solid #30363d;
+}
+
+.dark-mode .sql-progress-fill {
+  height: 100%;
+  background: linear-gradient(45deg, #238636, #2ea043);
+  transition: width 0.8s ease;
+  border-radius: 25px;
+}
+
+.dark-mode .sql-progress-text {
+  margin: 0;
+  color: #8b949e;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1024px) {
+  .light-mode .sql-game-main-container,
+  .dark-mode .sql-game-main-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
   }
   
-  .left-panel {
-    flex: 2;
-    padding: 20px;
-    border-right: 2px solid #333;
-    display: flex;
+  .light-mode .sql-button-group,
+  .dark-mode .sql-button-group {
     flex-direction: column;
-    justify-content: flex-start;
   }
   
-  .left-panel textarea {
-    background-color: #121212;
-    color: white;
-    width: 100%;
-    font-size: 1rem;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    resize: none;
-    margin-bottom: 10px;
+  .light-mode .sql-tab-buttons,
+  .dark-mode .sql-tab-buttons {
+    flex-wrap: wrap;
   }
-  
-  .left-panel button {
-    padding: 10px 15px;
-    background-color: #ff4c4c;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .result-table {
-    background: #2a2a2a;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  .result-table table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .result-table th,
-  .result-table td {
-    border-bottom: 1px solid #444;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .right-panel {
-    flex: 1;
-    padding: 20px;
-    background-color: #111;
-    display: flex;
+}
+
+@media (max-width: 768px) {
+  .light-mode .sql-console-header,
+  .dark-mode .sql-console-header {
     flex-direction: column;
-    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
   }
   
-  .story h2,
-  .police-hint h3 {
-    color: #ff4c4c;
+  .light-mode .sql-level-info,
+  .dark-mode .sql-level-info {
+    align-items: flex-start;
   }
   
-  .story {
-    margin-bottom: 30px;
+  .light-mode .sql-city-map,
+  .dark-mode .sql-city-map {
+    height: 280px;
   }
   
-  .police-hint code {
-    background: #222;
-    padding: 6px 10px;
-    display: inline-block;
-    border-radius: 5px;
-    color: #ffaaaa;
+  .light-mode .sql-game-left-panel,
+  .light-mode .sql-game-right-panel,
+  .dark-mode .sql-game-left-panel,
+  .dark-mode .sql-game-right-panel {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .light-mode .sql-game-main-container,
+  .dark-mode .sql-game-main-container {
+    padding: 0.5rem;
   }
   
+  .light-mode .sql-game-left-panel,
+  .light-mode .sql-game-right-panel,
+  .dark-mode .sql-game-left-panel,
+  .dark-mode .sql-game-right-panel {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+
+.light-mode .sql-table-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.light-mode .sql-table-container::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.light-mode .sql-table-container::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 6px;
+  border: 2px solid #f8f9fa;
+}
+
+.dark-mode .sql-table-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.dark-mode .sql-table-container::-webkit-scrollbar-track {
+  background: #21262d;
+  border-radius: 6px;
+}
+
+.dark-mode .sql-table-container::-webkit-scrollbar-thumb {
+  background: #238636;
+  border-radius: 6px;
+  border: 2px solid #21262d;
+}
