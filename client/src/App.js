@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route, useLocation , matchPath} from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import NavbarProf from './components/NavbarProf';
@@ -101,7 +102,7 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/logout" element={<Logout />} />
       </Routes>
 
-      <Chatbot />
+      {!matchPath("/Prof/Qcm/:idcour", location.pathname) && <Chatbot />}
     </>
   );
 }

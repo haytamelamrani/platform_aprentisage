@@ -10,10 +10,16 @@ const userSchema = new mongoose.Schema({
     enum: ['etudiant', 'professeur', 'admin'],
     default: 'etudiant'
   },
-  niveauEtude:{ type: String},
-  niveauProg:{ type: String},
+  niveauEtude: { type: String },
+  niveauProg: { type: String },
   resetToken: String,
-  resetTokenExpire: Date
+  resetTokenExpire: Date,
+
+  // Nouveau champ pour stocker la date du dernier login
+  lastLogin: {
+    type: Date,
+    default: null
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

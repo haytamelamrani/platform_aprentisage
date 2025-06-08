@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import menuIcon from '../assets/menu.png';
 
-const NavbarEtudiant = ({ darkMode, toggleMode }) => {
+const NavbarAdmin = ({ darkMode, toggleMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -64,4 +64,4 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
   );
 };
 
-export default NavbarEtudiant;
+export default NavbarAdmin;
