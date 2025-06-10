@@ -77,8 +77,8 @@ const CoursesPage = ({ darkMode }) => {
             >
               <div className="course-box">
                 <div className='course-box-header'>
-                <h2>{course.titre}</h2>
-                <AverageStars courseId={course._id} />
+                  <h2>{course.titre}</h2>
+                  <AverageStars courseId={course._id} />
                 </div>
                 <p>{course.description}</p>
               </div>

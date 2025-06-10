@@ -87,10 +87,12 @@ function AddCoursePage({ darkMode }) {
   };
 
   return (
-    <div className={`add-course-container ${darkMode ? 'dark-mode' : ''}`}>
+    <div className={`add-course ${darkMode ? 'dark-mode' : ''}`}>
+    
+      <div className={`add-course-container ${darkMode ? 'dark-mode' : ''}`}>
       <h2>Créer un Nouveau Cours</h2>
       <form onSubmit={envoyerCours}>
-        <input
+        <input 
           type="text"
           placeholder="Titre du cours"
           value={titre}
@@ -102,110 +104,123 @@ function AddCoursePage({ darkMode }) {
           onChange={(e) => setDescription(e.target.value)}
         />
         {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+      
+        <div className='input-section'>
 
-        <hr />
-        <h3>Ajouter des PDFs</h3>
-        {pdfs.map((pdf, index) => (
-          <div key={index}>
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={(e) => {
-                const updated = [...pdfs];
-                updated[index].file = e.target.files[0];
-                setPdfs(updated);
-              }}
-            />
-            <textarea
-              placeholder="Description du PDF"
-              value={pdf.text}
-              onChange={(e) => {
-                const updated = [...pdfs];
-                updated[index].text = e.target.value;
-                setPdfs(updated);
-              }}
-            />
-            <button type="button" onClick={() => supprimerPdf(index)} className="btn-delete">Supprimer</button>
+     
+        
+          <div className='pdf-section'>
+
+            <h3>Ajouter des PDFs</h3>
+              {pdfs.map((pdf, index) => (
+              <div className='input' key={index}>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={(e) => {
+                    const updated = [...pdfs];
+                    updated[index].file = e.target.files[0];
+                    setPdfs(updated);
+                  }}
+                />
+                <textarea
+                  placeholder="Description du PDF"
+                  value={pdf.text}
+                  onChange={(e) => {
+                    const updated = [...pdfs];
+                    updated[index].text = e.target.value;
+                    setPdfs(updated);
+                  }}
+                />
+                <button type="button" onClick={() => supprimerPdf(index)} className='btn-delete'>Supprimer</button>
+              </div>
+          ))}
+                <button  type="button" onClick={ajouterPdf} className='btn-add'>Ajouter un autre PDF</button>
+
           </div>
-        ))}
-        <button type="button" onClick={ajouterPdf}>Ajouter un autre PDF</button>
+          
 
-        <hr />
-        <h3>Ajouter des Images</h3>
-        {images.map((img, index) => (
-          <div key={index}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const updated = [...images];
-                updated[index].file = e.target.files[0];
-                setImages(updated);
-              }}
-            />
-            <textarea
-              placeholder="Commentaire sur l'image"
-              value={img.comment}
-              onChange={(e) => {
-                const updated = [...images];
-                updated[index].comment = e.target.value;
-                setImages(updated);
-              }}
-            />
-            <button type="button" onClick={() => supprimerImage(index)} className="btn-delete">Supprimer</button>
+          <div className='img-section'>
+            <h3>Ajouter des Images</h3>
+            {images.map((img, index) => (
+              <div className='input' key={index}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const updated = [...images];
+                    updated[index].file = e.target.files[0];
+                    setImages(updated);
+                  }}
+                />
+                <textarea
+                  placeholder="Commentaire sur l'image"
+                  value={img.comment}
+                  onChange={(e) => {
+                    const updated = [...images];
+                    updated[index].comment = e.target.value;
+                    setImages(updated);
+                  }}
+                />
+                <button type="button" onClick={() => supprimerImage(index)} className='btn-delete'>Supprimer</button>
+              </div>
+            ))}
+              <button type="button" onClick={ajouterImage} className='btn-add'>Ajouter une autre Image</button>
           </div>
-        ))}
-        <button type="button" onClick={ajouterImage}>Ajouter une autre Image</button>
 
-        <hr />
-        <h3>Ajouter des Vidéos</h3>
-        {videos.map((vid, index) => (
-          <div key={index}>
-            <input
-              type="file"
-              accept="video/*"
-              onChange={(e) => {
-                const updated = [...videos];
-                updated[index].file = e.target.files[0];
-                setVideos(updated);
-              }}
-            />
-            <textarea
-              placeholder="Commentaire sur la vidéo"
-              value={vid.comment}
-              onChange={(e) => {
-                const updated = [...videos];
-                updated[index].comment = e.target.value;
-                setVideos(updated);
-              }}
-            />
-            <button type="button" onClick={() => supprimerVideo(index)} className="btn-delete">Supprimer</button>
+          <div className='vedio-section'>
+          <h3>Ajouter des Vidéos</h3>
+          {videos.map((vid, index) => (
+            <div className='input' key={index}>
+              <input
+                type="file"
+                accept="video/*"
+                onChange={(e) => {
+                  const updated = [...videos];
+                  updated[index].file = e.target.files[0];
+                  setVideos(updated);
+                }}
+              />
+              <textarea
+                placeholder="Commentaire sur la vidéo"
+                value={vid.comment}
+                onChange={(e) => {
+                  const updated = [...videos];
+                  updated[index].comment = e.target.value;
+                  setVideos(updated);
+                }}
+              />
+              <button type="button" onClick={() => supprimerVideo(index)} className='btn-delete'>Supprimer</button>
+            </div>
+          ))}
+          <button type="button" onClick={ajouterVideo} className='btn-add'>Ajouter une autre Vidéo</button>
           </div>
-        ))}
-        <button type="button" onClick={ajouterVideo}>Ajouter une autre Vidéo</button>
 
-        <hr />
-        <h3>Ajouter des textes (contenu écrit ou lien )</h3>
-        {textes.map((t, index) => (
-          <div key={index}>
-            <textarea
-              placeholder="Contenu du texte"
-              value={t.contenu}
-              onChange={(e) => {
-                const updated = [...textes];
-                updated[index].contenu = e.target.value;
-                setTextes(updated);
-              }}
-            />
-            <button type="button" onClick={() => supprimerTexte(index)} className="btn-delete">Supprimer</button>
+          <div className='txt-section'>
+          <h3>Ajouter des textes (contenu écrit ou lien )</h3>
+          {textes.map((t, index) => (
+            <div className='input' key={index}>
+              <textarea
+                placeholder="Contenu du texte"
+                value={t.contenu}
+                onChange={(e) => {
+                  const updated = [...textes];
+                  updated[index].contenu = e.target.value;
+                  setTextes(updated);
+                }}
+              />
+              <button type="button" onClick={() => supprimerTexte(index)} className='btn-delete'>Supprimer</button>
+            </div>
+          ))}
+          <button type="button" onClick={ajouterTexte} className='btn-add'>Ajouter un autre texte</button>
+
+          
           </div>
-        ))}
-        <button type="button" onClick={ajouterTexte}>Ajouter un autre texte</button>
-
-        <hr />
-        <button type="submit">Créer le Cours</button>
+          <button type="submit">Créer le Cours</button>
+        </div>
       </form>
     </div>
+  </div>
   );
 }
 
