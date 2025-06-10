@@ -35,7 +35,7 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
         <li><Link to="/Prof/cours">Cours</Link></li>
-        <li><Link to="/Prof/addcours">Gestion Cour</Link></li>
+        <li><Link to="/Prof/GestionCours">Gestion Cour</Link></li>
         <li><Link to="/Prof/addqcm">Gestion Quiz</Link></li>
         <li><Link to="/Prof/notes">Notes etudiant</Link></li>
 
