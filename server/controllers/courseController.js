@@ -123,6 +123,15 @@ exports.getCourseById = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+exports.getCourseByIdRaw = async (id) => {
+  try {
+    const course = await Course.findById(id);
+    return course;
+  } catch (error) {
+    console.error("Erreur getCourseByIdRaw:", error);
+    return null;
+  }
+};
 
 
 exports.updateCourse = async (req, res) => {

@@ -12,7 +12,7 @@ const Chatbot = () => {
   const envoyerQuestion = async () => {
     if (!question.trim() || loading) return;
 
-    setMessages([...messages, { sender: 'user', text: question }]);
+    setMessages(prev => [...prev, { sender: 'user', text: question }]);
     setQuestion('');
     setLoading(true);
 
@@ -24,9 +24,14 @@ const Chatbot = () => {
       });
 
       const data = await res.json();
+
       setMessages(prev => [
         ...prev,
-        { sender: 'bot', text: data.reponse || "Je n'ai pas compris." }
+        {
+          sender: 'bot',
+          text: data.reponse || "Je n'ai pas compris.",
+          lien: data.lien || null  // ✅ Lien vers le cours (si présent)
+        }
       ]);
     } catch (err) {
       setMessages(prev => [
@@ -53,13 +58,24 @@ const Chatbot = () => {
               <div key={i} className={`message ${msg.sender}`}>
                 {msg.sender === 'bot' && <img src={aiIcon} alt="Bot" />}
                 <div className="text">
-                  {
-                  msg.text
+                  {msg.text
                     .split('\n')
-                    .slice(0, 10) 
+                    .slice(0, 10)
                     .map((line, j) => (
                       <p key={j}>{line}</p>
                     ))}
+                  
+                  {msg.lien && (
+                    <a
+                      href={msg.lien}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    
+                      
+                    >
+                       Consulter le cours
+                    </a>
+                  )}
                 </div>
                 {msg.sender === 'user' && <img src={userIcon} alt="User" />}
               </div>

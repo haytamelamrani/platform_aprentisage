@@ -96,6 +96,7 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/etudiant/GameSql" element={<ProtectedRoute>< SqlGame/></ProtectedRoute>} />
         <Route path="/etudiant/jeux" element={<ProtectedRoute><GamePage /></ProtectedRoute>} />
 
+
         <Route path="/etudiant/notes" element={<ProtectedRoute><ProgressPage darkMode={darkMode} /></ProtectedRoute>} />
 
         <Route path="/logout" element={<Logout />} />
