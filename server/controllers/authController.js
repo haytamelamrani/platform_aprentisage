@@ -30,7 +30,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(motdepasse, 10);
     tempuser.set('cles', { nom, prenom, niveauEtude, niveauProg, email, motdepasse: hashedPassword, role });
 
-
+    res.status(201).json({ message: 'Inscription réussie. Veuillez vérifier le code envoyé à votre email.' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur serveur', error: error.message });

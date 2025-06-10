@@ -31,7 +31,7 @@ const ModifierCours = ({ darkMode }) => {
         const data = res.data;
         setCourse({
           ...data,
-          textes: data.textes?.map(t => ({ contenu: t })) || [],
+          textes: data.textes || [],
           pdfs: data.pdfs || [],
           images: data.images || [],
           video: data.video || []
@@ -46,7 +46,7 @@ const ModifierCours = ({ darkMode }) => {
 
   const handleTextChange = (i, value) => {
     const updated = [...course.textes];
-    updated[i] = { contenu: value };
+    updated[i].contenu = value;
     setCourse({ ...course, textes: updated });
   };
 
@@ -133,7 +133,7 @@ const ModifierCours = ({ darkMode }) => {
         <label>Description :</label>
         <textarea name="description" value={course.description} onChange={handleChange} />
 
-        <label>email du professeur :</label>
+        <label>Email du professeur :</label>
         <input type="text" name="nomProf" value={course.emailProf} onChange={handleChange} />
 
         <h3>📝 Textes</h3>

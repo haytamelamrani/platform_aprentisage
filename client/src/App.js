@@ -43,6 +43,9 @@ import StudentFeedback from './components/StudentFeedback';
 import Chatbot from './components/Chatbot';
 import GamePage from './pages/GamePage';
 import SqlGame from './pages/GameSql';
+import SecurityGame from './pages/SecurityGame';
+import CssPrincessGame from './pages/CssPrincessGame';
+import GestionCours from './pages/GestionCous';
 
 
 function AppContent({ darkMode, toggleMode }) {
@@ -88,6 +91,7 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/Prof/courses/:titre" element={<ProtectedRoute><CourseDetailsPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/Qcm/:idcour" element={<ProtectedRoute><QcmPage darkMode={darkMode} /></ProtectedRoute>} />
         <Route path="/Prof/notes" element={<ProtectedRoute><ProfProgressPage darkMode={darkMode} /></ProtectedRoute>} />
+        <Route path="/Prof/GestionCours" element={<ProtectedRoute><GestionCours darkMode={darkMode} /></ProtectedRoute>} />
 
         <Route path="/admin/cours" element={<ProtectedRoute><ListeCours /></ProtectedRoute>} />
         <Route path="/admin/utilisateurs" element={<ProtectedRoute><ListeUtilisateurs /></ProtectedRoute>} />
@@ -95,7 +99,9 @@ function AppContent({ darkMode, toggleMode }) {
         <Route path="/admin/cours/modifier/:id" element={<ProtectedRoute><ModifierCours /></ProtectedRoute>} />
 
         <Route path="/etudiant/GameSql" element={<ProtectedRoute>< SqlGame/></ProtectedRoute>} />
+        <Route path="/etudiant/GameCss" element={<ProtectedRoute>< CssPrincessGame/></ProtectedRoute>} />
         <Route path="/etudiant/jeux" element={<ProtectedRoute><GamePage /></ProtectedRoute>} />
+        <Route path="/etudiant/SecurityGame" element={<ProtectedRoute><SecurityGame darkMode={darkMode} toggleMode={toggleMode}/></ProtectedRoute>} />
 
         <Route path="/etudiant/notes" element={<ProtectedRoute><ProgressPage darkMode={darkMode} /></ProtectedRoute>} />
 

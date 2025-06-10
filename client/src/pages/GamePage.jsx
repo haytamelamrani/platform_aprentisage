@@ -7,11 +7,10 @@ import vid5 from '../assets/video/vid5.mp4';
 import vid6 from '../assets/video/vid6.mp4';
 import '../styles/Gamepage.css'; 
 
-
 const GamePage = ({ darkMode, toggleMode }) => {
   return (
     <div className="games-page ">
-      <a href="/jeu-css" className="game-card">
+      <a href="/etudiant/GameCss" className="game-card">
         <video className="background-video" src={videoHTML} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu d’apprentissage HTML/CSS</p>
@@ -30,7 +29,7 @@ const GamePage = ({ darkMode, toggleMode }) => {
           </p>
         </div>
       </a>
-      <a href="/jeu-css" className="game-card">
+      <a href="/etudiant/SecurityGame" className="game-card">
         <video className="background-video" src={videoSecurity} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu de cybersécurité </p>

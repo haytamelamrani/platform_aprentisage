@@ -7,7 +7,15 @@
   top: 0;
   z-index: 1000;
 }
-
+.logoflex{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+.logoflex img {
+  width: 40px;
+  height: auto;
+}
 .logo {
   font-size: 1.7rem;
   font-weight: bold;
