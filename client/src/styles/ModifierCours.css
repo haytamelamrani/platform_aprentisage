@@ -1,104 +1,249 @@
+/* ModifierCours.css - Based on #00ff99 color theme */
+
+/* Main container */
 .modifier-cours-container {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #1f1f1f;
-  color: #f0f0f0;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  font-family: 'Segoe UI', sans-serif;
+  max-width: 900px; /* Reduced from 1200px */
+  margin: 0 auto;
+  padding: 1.5rem; /* Reduced from 2rem */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 204, 122, 0.2);
+  color: #333333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* Headings */
 .modifier-cours-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #00bfff;
+  color: #00cc7a;
+  font-size: 1.8rem; /* Reduced from 2rem */
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #00ff99;
+  padding-bottom: 0.5rem;
 }
 
+.modifier-cours-container h3 {
+  color: #00cc7a;
+  font-size: 1.3rem; /* Reduced from 1.5rem */
+  margin: 1.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Form styles */
 .modifier-cours-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0.8rem; /* Reduced from 1rem */
 }
 
 .modifier-cours-form label {
-  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #00cc7a;
 }
 
-.modifier-cours-form input,
+.modifier-cours-form input[type="text"],
 .modifier-cours-form textarea {
-  padding: 10px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  background-color: #2a2a2a;
-  color: black;
+  padding: 0.75rem;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modifier-cours-form input[type="text"]:focus,
+.modifier-cours-form textarea:focus {
+  border-color: #00ff99;
+  box-shadow: 0 0 0 2px rgba(0, 204, 122, 0.2);
+  outline: none;
+}
+
+.modifier-cours-form textarea {
+  min-height: 100px; /* Reduced from 120px */
   resize: vertical;
 }
 
-.modifier-cours-form h3 {
-  margin-top: 20px;
-  color: #f39c12;
-  border-bottom: 1px solid #555;
-  padding-bottom: 5px;
-}
-
-.modifier-cours-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.modifier-cours-form button {
-  margin-top: 20px;
-  padding: 12px;
-  border: none;
-  background-color: #00b894;
-  color: white;
-  border-radius: 8px;
-  font-size: 16px;
+/* File inputs */
+.modifier-cours-form input[type="file"] {
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px dashed #dddddd;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+}
+
+.modifier-cours-form input[type="file"]:hover {
+  border-color: #00ff99;
+}
+
+/* Buttons */
+.modifier-cours-form button {
+  background-color: #00ff99;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.2rem; /* Reduced from 0.75rem 1.5rem */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .modifier-cours-form button:hover {
-  background-color: #019875;
-}
-.modifier-cours-container {
-  padding: 20px;
-  background-color: #fff;
-  color: #000;
+  background-color: #00cc7a;
+  transform: translateY(-2px);
 }
 
-.modifier-cours-container.dark-mode {
-  background-color: #1e1e1e;
+.modifier-cours-form button[type="submit"] {
+  margin-top: 1.5rem; /* Reduced from 2rem */
+  padding: 0.8rem 1.6rem; /* Reduced from 1rem 2rem */
+  font-size: 1.1rem;
+  background-color: #00cc7a;
+}
+
+.modifier-cours-form button[type="submit"]:hover {
+  background-color: #00ff99;
+}
+
+/* File display sections */
+.modifier-cours-form > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.modifier-cours-form > div a {
+  color: #00cc7a;
+  text-decoration: none;
+  font-weight: 500;
+  flex: 1;
+}
+
+.modifier-cours-form > div a:hover {
+  text-decoration: underline;
+}
+
+.modifier-cours-form > div p {
+  flex: 2;
+  margin: 0;
+  color: #333333;
+}
+
+.modifier-cours-form > div button {
+  padding: 0.25rem 0.5rem;
+  background-color: #ff4444;
+}
+
+.modifier-cours-form > div button:hover {
+  background-color: #cc0000;
+}
+
+/* Image and video containers */
+.modifier-cours-form > div img,
+.modifier-cours-form > div video {
+  border-radius: 4px;
+  border: 2px solid #dddddd;
+  object-fit: cover;
+}
+
+/* Dark mode styles with the requested structure */
+.dark-mode .modifier-cours-container {
+  background-color: #222222;
   color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 204, 122, 0.4);
 }
 
-.modifier-cours-form input,
-.modifier-cours-form textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
+.dark-mode .modifier-cours-container h2 {
+  color: #00ff99;
+  border-bottom-color: #00cc7a;
 }
 
-.dark-mode .modifier-cours-form input,
+.dark-mode .modifier-cours-container h3 {
+  color: #00ff99;
+}
+
+.dark-mode .modifier-cours-form label {
+  color: #00ff99;
+}
+
+.dark-mode .modifier-cours-form input[type="text"],
 .dark-mode .modifier-cours-form textarea {
-  background: #2b2b2b;
+  background-color: #333333;
   color: #f0f0f0;
-  border: 1px solid #555;
+  border-color: #444444;
 }
 
-.modifier-cours-form button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007acc;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+.dark-mode .modifier-cours-form input[type="text"]:focus,
+.dark-mode .modifier-cours-form textarea:focus {
+  border-color: #00ff99;
+  box-shadow: 0 0 0 2px rgba(0, 255, 153, 0.3);
+}
+
+.dark-mode .modifier-cours-form input[type="file"] {
+  background-color: #333333;
+  border-color: #444444;
 }
 
 .dark-mode .modifier-cours-form button {
-  background-color: #0a84ff;
+  background-color: #00ff99;
+  color: #000;
+}
+
+.dark-mode .modifier-cours-form button:hover {
+  background-color: #00cc7a;
+}
+
+.dark-mode .modifier-cours-form button[type="submit"] {
+  background-color: #00cc7a;
+}
+
+.dark-mode .modifier-cours-form button[type="submit"]:hover {
+  background-color: #00ff99;
+}
+
+.dark-mode .modifier-cours-form > div {
+  background-color: #333333;
+}
+
+.dark-mode .modifier-cours-form > div a {
+  color: #00ff99;
+}
+
+.dark-mode .modifier-cours-form > div p {
+  color: #f0f0f0;
+}
+
+.dark-mode .modifier-cours-form > div img,
+.dark-mode .modifier-cours-form > div video {
+  border-color: #444444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modifier-cours-container {
+    padding: 1rem;
+    max-width: 95%;
+  }
+  
+  .modifier-cours-form > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .modifier-cours-form > div img,
+  .modifier-cours-form > div video {
+    width: 100%;
+    max-width: 300px;
+  }
 }

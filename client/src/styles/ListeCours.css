@@ -1,81 +1,194 @@
-/* 🎨 Variables Globales */
-:root {
-  --bg: #ffffff;
-  --text: #000000;
-  --header: #f2f2f2;
-  --border: #ccc;
-  --button-edit: #0d6efd;
-  --button-delete: #dc3545;
-  --button-hover: #e0e0e0;
-}
+/* ListeCours.css - Based on #00ff99 color theme */
 
-.dark-mode {
-  --bg: #1c1c1c;
-  --text: #f5f5f5;
-  --header: #2a2a2a;
-  --border: #444;
-  --button-edit: #3399ff;
-  --button-delete: #ff5c5c;
-  --button-hover: #333;
-}
-
-/* 📦 Conteneur */
+/* Main container - increased size */
 .cours-container {
-  padding: 2rem;
-  background-color: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  transition: all 0.3s ease;
+  max-width: 1100px; /* Increased from 900px */
+  margin: 0 auto;
+  padding: 2rem; /* Increased from 1.5rem */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 204, 122, 0.2);
+  color: #333333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* 🧾 Table */
-table {
+/* Heading - increased size */
+.cours-container h2 {
+  color: #00cc7a;
+  font-size: 2rem; /* Increased from 1.8rem */
+  margin-bottom: 2rem; /* Increased from 1.5rem */
+  border-bottom: 2px solid #00ff99;
+  padding-bottom: 0.75rem; /* Increased from 0.5rem */
+}
+
+/* Loading and empty states */
+.cours-container p {
+  padding: 1.5rem; /* Increased from 1rem */
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin: 1.5rem 0; /* Increased from 1rem */
+  font-size: 1.1rem; /* Added font size */
+}
+
+/* Table styles - increased size and spacing */
+.cours-container table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
-  background-color: var(--bg);
-  color: var(--text);
+  margin-top: 1.5rem; /* Increased from 1rem */
+  box-shadow: 0 3px 10px rgba(0, 204, 122, 0.15); /* Increased shadow */
+  border-radius: 6px; /* Increased from 4px */
+  overflow: hidden;
 }
 
-/* 🧩 Entête */
-thead {
-  background-color: var(--header);
-}
-
-th, td {
-  padding: 1rem;
-  border: 1px solid var(--border);
+.cours-container th {
+  background-color: #00ff99;
+  color: #000000;
+  font-weight: 600;
   text-align: left;
+  padding: 1rem 1.25rem; /* Increased from 0.75rem 1rem */
+  border-bottom: 2px solid #00cc7a;
+  font-size: 1.1rem; /* Added font size */
 }
 
-/* ✏️ Boutons */
-.edit-btn, .delete-btn {
-  padding: 0.4rem 0.8rem;
-  margin-right: 0.4rem;
+.cours-container td {
+  padding: 1rem 1.25rem; /* Increased from 0.75rem 1rem */
+  border-bottom: 1px solid #dddddd;
+  vertical-align: middle;
+  font-size: 1rem; /* Added font size */
+}
+
+.cours-container tr:last-child td {
+  border-bottom: none;
+}
+
+.cours-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.cours-container tr:hover {
+  background-color: rgba(0, 255, 153, 0.1);
+}
+
+/* Action buttons - increased size */
+.cours-container .edit-btn,
+.cours-container .delete-btn {
+  padding: 0.6rem 1rem; /* Increased from 0.4rem 0.8rem */
+  margin-right: 0.75rem; /* Increased from 0.5rem */
   border: none;
-  border-radius: 6px;
-  color: #fff;
-  cursor: pointer;
+  border-radius: 4px;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem; /* Added font size */
 }
 
-.edit-btn {
-  background-color: var(--button-edit);
+.cours-container .edit-btn {
+  background-color: #00ff99;
+  color: #000000;
 }
 
-.delete-btn {
-  background-color: var(--button-delete);
+.cours-container .edit-btn:hover {
+  background-color: #00cc7a;
+  transform: translateY(-2px);
 }
 
-.edit-btn:hover,
-.delete-btn:hover {
-  opacity: 0.85;
+.cours-container .delete-btn {
+  background-color: #ff4444;
+  color: #ffffff;
 }
 
-/* 🗂 Texte d'état */
-.cours-container p {
-  font-style: italic;
-  font-size: 1rem;
-  margin-top: 1.5rem;
+.cours-container .delete-btn:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+}
+
+/* Dark mode styles */
+.dark-mode .cours-container {
+  background-color: #222222;
+  color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 204, 122, 0.4);
+}
+
+.dark-mode .cours-container h2 {
+  color: #00ff99;
+  border-bottom-color: #00cc7a;
+}
+
+.dark-mode .cours-container p {
+  background-color: #333333;
+  color: #f0f0f0;
+}
+
+.dark-mode .cours-container table {
+  box-shadow: 0 3px 10px rgba(0, 255, 153, 0.2);
+}
+
+.dark-mode .cours-container th {
+  background-color: #00cc7a;
+  color: #000000;
+  border-bottom-color: #00ff99;
+}
+
+.dark-mode .cours-container td {
+  border-bottom-color: #444444;
+}
+
+.dark-mode .cours-container tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .cours-container tr:hover {
+  background-color: rgba(0, 255, 153, 0.15);
+}
+
+.dark-mode .cours-container .edit-btn {
+  background-color: #00ff99;
+  color: #000000;
+}
+
+.dark-mode .cours-container .edit-btn:hover {
+  background-color: #00cc7a;
+}
+
+.dark-mode .cours-container .delete-btn {
+  background-color: #ff4444;
+  color: #ffffff;
+}
+
+.dark-mode .cours-container .delete-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .cours-container {
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cours-container {
+    padding: 1rem;
+  }
+  
+  .cours-container table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .cours-container th,
+  .cours-container td {
+    padding: 0.8rem 1rem;
+  }
+  
+  .cours-container .edit-btn,
+  .cours-container .delete-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }

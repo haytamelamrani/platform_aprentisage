@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import menuIcon from '../assets/menu.png';
+import logo from '../assets/logo.png';
 
 const NavbarProf = ({ darkMode, toggleMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +25,16 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Link to="/Prof" className="logo">SmartLearn</Link>
-
+      
+      <div className='logoflex'>
+          <img
+            src={logo}
+            alt="menu"
+            
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+          <Link to="/Prof" className="logo">SmartLearn</Link>
+      </div>
       <img
         src={menuIcon}
         alt="menu"
@@ -35,7 +44,7 @@ const NavbarProf = ({ darkMode, toggleMode }) => {
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
         <li><Link to="/Prof/cours">Cours</Link></li>
-        <li><Link to="/Prof/GestionCours">Gestion Cour</Link></li>
+        <li><Link to="/Prof/GestionCours">Gestion Cours</Link></li>
         <li><Link to="/Prof/addqcm">Gestion Quiz</Link></li>
         <li><Link to="/Prof/notes">Notes etudiant</Link></li>
 

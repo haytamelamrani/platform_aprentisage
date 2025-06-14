@@ -7,7 +7,15 @@
   background-color:white; /* fond sombre */
   min-height: 100vh;
 }
-
+.dark-mode .games-page{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding: 30px;
+  justify-content: center;
+  background-color: black;
+  min-height: 100vh;
+}
 .game-card {
   position: relative;
   width: 29%;

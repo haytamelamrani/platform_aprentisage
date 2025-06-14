@@ -33,7 +33,7 @@ const LoginPage = ({ darkMode }) => {
       console.log("prenom",localStorage.getItem('prenom'));
       // ✅ Redirection selon le rôle
       if (user.role === 'etudiant') {
-        navigate('/student-dashboard');
+        navigate('/Prof/cours');
       } else if (user.role === 'professeur') {
         navigate('/Prof');
       } else {

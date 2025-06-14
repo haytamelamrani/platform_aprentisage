@@ -33,7 +33,6 @@
 .qcm-block p {
   margin-bottom: 15px;
   font-weight: 600;
-  
 }
 
 .answer-option {
@@ -79,6 +78,7 @@
   color: #166534;
   font-weight: bold;
 }
+
 /* 🌿 Réponses en mode clair */
 .correct-answer {
   background-color: #d1fae5 !important;
@@ -92,18 +92,27 @@
   color: #111 !important;
 }
 
-/* 🌙 Corriger écriture noire même en dark mode */
-.dark-mode .correct-answer {
-  color: #111 !important;
+/* 🌙 Dark mode */
+.dark-mode .qcm-container {
+  background: #1f2937;
+  color: #f9fafb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.dark-mode .wrong-answer {
-  color: #111 !important;
+.dark-mode .qcm-container h2 {
+  color: #4ade80;
+}
+
+.dark-mode .qcm-block {
+  background-color: #111827;
+  border: 1px solid #374151;
+}
+
+.dark-mode .qcm-block:hover {
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.2);
 }
 
 .dark-mode .qcm-block p {
-  margin-bottom: 15px;
-  font-weight: 600;
   color: white;
 }
 
@@ -128,7 +137,7 @@
   color: #86efac;
 }
 
-/* 🌙 Dark mode */
+/* 🌙 Dark mode (préféré par l'utilisateur) */
 @media (prefers-color-scheme: dark) {
   .qcm-container {
     background: #1f2937;
@@ -143,7 +152,6 @@
   .qcm-block {
     background-color: #111827;
     border: 1px solid #374151;
-    
   }
 
   .qcm-block:hover {

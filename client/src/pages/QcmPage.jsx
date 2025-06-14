@@ -125,20 +125,6 @@ const QcmPage = ({ darkMode }) => {
         </div>
       )}
 
-      {score === null && qcms.length > 0 && (
-        <div style={{
-          backgroundColor: '#222',
-          color: '#ccc',
-          padding: '10px',
-          marginBottom: '1rem',
-          borderRadius: '6px'
-        }}>
-          <p><strong>🔍 Prévisualisation avant envoi :</strong></p>
-          <p><strong>Email :</strong> {localStorage.getItem('email')}</p>
-          <p><strong>Cours :</strong> {nomCours}</p>
-          <p><strong>Questions :</strong> {qcms.length}</p>
-        </div>
-      )}
 
       {loading && <p>⏳ Chargement...</p>}
       {!loading && qcms.length === 0 && <p>⚠️ Aucun QCM trouvé.</p>}

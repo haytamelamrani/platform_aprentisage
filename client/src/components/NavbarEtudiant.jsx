@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import menuIcon from '../assets/menu.png';
+import logo from '../assets/logo.png';
 
 const NavbarEtudiant = ({ darkMode, toggleMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +25,16 @@ const NavbarEtudiant = ({ darkMode, toggleMode }) => {
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <Link to="student-dashboard" className="logo">SmartLearn</Link>
-
+      
+      <div className='logoflex'>
+          <img
+            src={logo}
+            alt="menu"
+            
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+          <Link to="student-dashboard" className="logo">SmartLearn</Link>
+      </div>
       <img
         src={menuIcon}
         alt="menu"

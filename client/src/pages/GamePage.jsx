@@ -6,11 +6,12 @@ import vid4 from '../assets/video/vid4.mp4';
 import vid5 from '../assets/video/vid5.mp4';
 import vid6 from '../assets/video/vid6.mp4';
 import '../styles/Gamepage.css'; 
+import { Link } from 'react-router-dom';
 
-const GamePage = ({ darkMode, toggleMode }) => {
+const GamePage = ({darkMode}) => {
   return (
-    <div className="games-page ">
-      <a href="/etudiant/GameCss" className="game-card">
+    <div className="games-page">
+      <Link to="/etudiant/GameCss" className="game-card">
         <video className="background-video" src={videoHTML} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu d’apprentissage HTML/CSS</p>
@@ -18,9 +19,10 @@ const GamePage = ({ darkMode, toggleMode }) => {
             Plonge dans un monde interactif pour apprendre le HTML et le CSS en t'amusant.
           </p>
         </div>
-      </a>
+      </Link>
+      
 
-      <a href="/etudiant/GameSql" className="game-card">
+      <Link to="/etudiant/GameSql" className="game-card">
         <video className="background-video" src={videoSQL} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu SQL : Attrape le criminel</p>
@@ -28,8 +30,8 @@ const GamePage = ({ darkMode, toggleMode }) => {
             Résous des énigmes SQL pour retrouver le coupable et sauver la base de données.
           </p>
         </div>
-      </a>
-      <a href="/etudiant/SecurityGame" className="game-card">
+      </Link>
+      <Link to="/etudiant/SecurityGame" className="game-card">
         <video className="background-video" src={videoSecurity} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu de cybersécurité </p>
@@ -37,8 +39,8 @@ const GamePage = ({ darkMode, toggleMode }) => {
               Apprends à te défendre contre les attaques (SQL, XSS, etc.) en utilisant les bonnes commandes de sécurité.
           </p>
         </div>
-      </a>
-      <a href="/jeu-css" className="game-card">
+      </Link>
+      <Link to="/jeu-css" className="game-card">
         <video className="background-video" src={vid4} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu d’apprentissage HTML/CSS</p>
@@ -46,9 +48,9 @@ const GamePage = ({ darkMode, toggleMode }) => {
             Plonge dans un monde interactif pour apprendre le HTML et le CSS en t'amusant.
           </p>
         </div>
-      </a>
+      </Link>
 
-      <a href="/jeu-sql" className="game-card">
+      <Link to="/jeu-sql" className="game-card">
         <video className="background-video" src={vid5} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu SQL : Attrape le criminel</p>
@@ -56,8 +58,8 @@ const GamePage = ({ darkMode, toggleMode }) => {
             Résous des énigmes SQL pour retrouver le coupable et sauver la base de données.
           </p>
         </div>
-      </a>
-      <a href="/jeu-css" className="game-card">
+      </Link>
+      <Link to="/jeu-css" className="game-card">
         <video className="background-video" src={vid6} autoPlay loop muted playsInline />
         <div className="game-info">
           <p className="game-title">Jeu de cybersécurité </p>
@@ -65,7 +67,7 @@ const GamePage = ({ darkMode, toggleMode }) => {
               Apprends à te défendre contre les attaques (SQL, XSS, etc.) en utilisant les bonnes commandes de sécurité.
           </p>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
