@@ -98,9 +98,9 @@ function AppContent({ darkMode, toggleMode }) {
 
         <Route path="/admin/cours/modifier/:id" element={<ProtectedRoute><ModifierCours /></ProtectedRoute>} />
 
-        <Route path="/etudiant/GameSql" element={<ProtectedRoute>< SqlGame/></ProtectedRoute>} />
-        <Route path="/etudiant/GameCss" element={<ProtectedRoute>< CssPrincessGame/></ProtectedRoute>} />
-        <Route path="/etudiant/jeux" element={<ProtectedRoute><GamePage /></ProtectedRoute>} />
+        <Route path="/etudiant/GameSql" element={<ProtectedRoute>< SqlGame darkMode={darkMode}/></ProtectedRoute>} />
+        <Route path="/etudiant/GameCss" element={<ProtectedRoute>< CssPrincessGame darkMode={darkMode}/></ProtectedRoute>} />
+        <Route path="/etudiant/jeux" element={<ProtectedRoute><GamePage darkMode={darkMode}/></ProtectedRoute>} />
         <Route path="/etudiant/SecurityGame" element={<ProtectedRoute><SecurityGame darkMode={darkMode} toggleMode={toggleMode}/></ProtectedRoute>} />
 
 

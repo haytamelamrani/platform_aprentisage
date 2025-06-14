@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/GameSql.css';
 
-const SqlGame = () => {
+const SqlGame = ({darkMode}) => {
   const [sql, setSql] = useState('');
   const [resultat, setResultat] = useState([]);
   const [message, setMessage] = useState(null);
